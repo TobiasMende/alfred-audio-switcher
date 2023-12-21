@@ -924,9 +924,9 @@
 				<key>removeextension</key>
 				<false/>
 				<key>text</key>
-				<string></string>
+				<string>{query}</string>
 				<key>title</key>
-				<string>{query} copied to clipboard</string>
+				<string>Devices copied to clipboard</string>
 			</dict>
 			<key>type</key>
 			<string>alfred.workflow.output.notification</string>
@@ -968,7 +968,7 @@
 				<key>fixedorder</key>
 				<false/>
 				<key>items</key>
-				<string>[{"imagefile":"0433844f12a776d9797a04b067e658c78b608f58.png","title":"Outputs","arg":"output","subtitle":"Select to Copy"},{"imagefile":"23f892692bbd1da4f098f206d9002d40b71e1be5.png","title":"Inputs","arg":"input","subtitle":"Select to Copy"}]</string>
+				<string>[{"imagefile":"0433844f12a776d9797a04b067e658c78b608f58.png","title":"Outputs","arg":"output","subtitle":"Choose to Copy"},{"imagefile":"23f892692bbd1da4f098f206d9002d40b71e1be5.png","title":"Inputs","arg":"input","subtitle":"Choose to Copy"}]</string>
 				<key>keyword</key>
 				<string>fetchaudiodevices</string>
 				<key>matchmode</key>
