@@ -200,7 +200,7 @@ func switchDeviceByDeviceIndexAndList(type: DeviceType, deviceIndexAsString: Str
 
     let deviceList = convertMultilineArgumentToList(argument: deviceListAsMultilineString)
 
-    guard deviceIndex >= deviceList.count else {
+    guard deviceIndex < deviceList.count else {
         fatalError("Invalid Index Passed")
     }
 
