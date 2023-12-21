@@ -2,6 +2,34 @@
 import Foundation
 import CoreAudio
 
+let arguments = CommandLine.arguments
+guard arguments.count > 2 else {
+    printUsageAndExit()
+    exit(1)
+}
+
+let command = arguments[1]
+let type = arguments[2] == "input" ? DeviceType.input : DeviceType.output
+
+if command == "list" {
+    let ignoreList = arguments.count > 3 ? convertMultilineArgumentToList(argument: arguments[3]) : []
+    printDeviceItems(type: type, ignoreList: ignoreList)
+} else if command == "switch_by_id" && arguments.count > 3 {
+    let deviceIdAsString = arguments[3]
+    switchDeviceById(type: type, deviceIdAsString: deviceIdAsString)
+} else if command == "print_device_names" {
+    printDeviceNames(type: type)
+} else if command == "switch_by_name" && arguments.count > 3 {
+    guard let deviceIndex = Int(arguments[3]) else {
+        fatalError("Invalid Device Index: \(arguments[3])")
+    }
+    let deviceList = arguments.count > 4 ? convertMultilineArgumentToList(argument: arguments[4]) : []
+    switchDeviceByDeviceIndexAndList(type: type, deviceIndex: deviceIndex, deviceList: deviceList)
+} else {
+    printUsageAndExit()
+}
+
+
 enum DeviceType {
     case input, output
 }
@@ -144,7 +172,7 @@ func filterAudioDevices(devices: [(name: String, id: AudioDeviceID)], ignoreList
 func printDeviceNames(type: DeviceType) {
     getAudioDeviceList(type: type).forEach { device in
             print(device.name)
-        }
+    }
 }
 
 func printDeviceItems(type: DeviceType, ignoreList: [String]) {
@@ -194,31 +222,4 @@ func printUsageAndExit() {
     print("command: (list | switch_by_id | switch_by_name | print_device_names)")
     print("type: (input | output)")
     exit(1)
-}
-
-let arguments = CommandLine.arguments
-guard arguments.count > 2 else {
-    printUsageAndExit()
-    exit(1)
-}
-
-let command = arguments[1]
-let type = arguments[2] == "input" ? DeviceType.input : DeviceType.output
-          
-if command == "list" {
-    let ignoreList = arguments.count > 3 ? convertMultilineArgumentToList(argument: arguments[3]) : []
-    printDeviceItems(type: type, ignoreList: ignoreList)
-} else if command == "switch_by_id" && arguments.count > 3 {
-    let deviceIdAsString = arguments[3]
-    switchDeviceById(type: type, deviceIdAsString: deviceIdAsString)
-} else if command == "print_device_names" {
-    printDeviceNames(type: type)
-} else if command == "switch_by_name" && arguments.count > 3 {
-    guard let deviceIndex = Int(arguments[3]) else {
-        fatalError("Invalid Device Index: \(arguments[3])")
-    }
-    let deviceList = arguments.count > 4 ? convertMultilineArgumentToList(argument: arguments[4]) : []
-    switchDeviceByDeviceIndexAndList(type: type, deviceIndex: deviceIndex, deviceList: deviceList)
-} else {
-    printUsageAndExit()
 }
