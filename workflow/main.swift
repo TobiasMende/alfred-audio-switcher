@@ -12,19 +12,13 @@ let command = arguments[1]
 let type = arguments[2] == "input" ? DeviceType.input : DeviceType.output
 
 if command == "list" {
-    let ignoreList = arguments.count > 3 ? convertMultilineArgumentToList(argument: arguments[3]) : []
-    printDeviceItems(type: type, ignoreList: ignoreList)
+    printDeviceItems(type: type, ignoreListAsMultilineString: arguments.count > 3 ? arguments[3] : "")
 } else if command == "switch_by_id" && arguments.count > 3 {
-    let deviceIdAsString = arguments[3]
-    switchDeviceById(type: type, deviceIdAsString: deviceIdAsString)
+    switchDeviceById(type: type, deviceIdAsString: arguments[3])
 } else if command == "print_device_names" {
     printDeviceNames(type: type)
-} else if command == "switch_by_name" && arguments.count > 3 {
-    guard let deviceIndex = Int(arguments[3]) else {
-        fatalError("Invalid Device Index: \(arguments[3])")
-    }
-    let deviceList = arguments.count > 4 ? convertMultilineArgumentToList(argument: arguments[4]) : []
-    switchDeviceByDeviceIndexAndList(type: type, deviceIndex: deviceIndex, deviceList: deviceList)
+} else if command == "switch_by_name" && arguments.count > 4 {
+    switchDeviceByDeviceIndexAndList(type: type, deviceIndexAsString: arguments[3], deviceListAsMultilineString: arguments[4])
 } else {
     printUsageAndExit()
 }
@@ -107,7 +101,7 @@ func getDefaultAudioDevice(type: DeviceType) -> (name: String, id: AudioDeviceID
     guard let deviceName = getDeviceName(deviceId: deviceID) else {
         fatalError("Failed to retrieve device Name for \(deviceID)")
     }
-    return (name: deviceName as String, id: deviceID)
+    return (name: deviceName, id: deviceID)
 }
 
 func getAudioDeviceList(type: DeviceType) -> [(name: String, id: AudioDeviceID)] {
@@ -141,11 +135,12 @@ func getAudioDeviceList(type: DeviceType) -> [(name: String, id: AudioDeviceID)]
             continue  // Skip device if it doesn't have streams for the specified type
         }
 
-        let deviceName = getDeviceName(deviceId: id)
-
-        if (deviceName != nil) {
-            deviceList.append((name: deviceName! as String, id: id))
+        guard let deviceName = getDeviceName(deviceId: id) else {
+            continue
         }
+
+        deviceList.append((name: deviceName, id: id))
+
     }
 
     return deviceList
@@ -175,7 +170,8 @@ func printDeviceNames(type: DeviceType) {
     }
 }
 
-func printDeviceItems(type: DeviceType, ignoreList: [String]) {
+func printDeviceItems(type: DeviceType, ignoreListAsMultilineString: String) {
+    let ignoreList = convertMultilineArgumentToList(argument: ignoreListAsMultilineString)
     let defaultDevice = getDefaultAudioDevice(type: type)
     let devices = getAudioDeviceList(type: type)
     let devicesAsJson = filterAudioDevices(devices: devices, ignoreList: ignoreList).map { device in
@@ -197,10 +193,17 @@ func switchDeviceById(type: DeviceType, deviceIdAsString: String) {
     print(selectedDevice)
 }
 
-func switchDeviceByDeviceIndexAndList(type: DeviceType, deviceIndex: Int, deviceList: [String]) {
-    if deviceIndex >= deviceList.count {
+func switchDeviceByDeviceIndexAndList(type: DeviceType, deviceIndexAsString: String, deviceListAsMultilineString: String) {
+    guard let deviceIndex = Int(deviceIndexAsString) else {
+        fatalError("Invalid Device Index: \(deviceIndexAsString)")
+    }
+
+    let deviceList = convertMultilineArgumentToList(argument: deviceListAsMultilineString)
+
+    guard deviceIndex >= deviceList.count else {
         fatalError("Invalid Index Passed")
     }
+
     let deviceFromList = deviceList[deviceIndex]
 
     guard let deviceId = getAudioDeviceIdByName(deviceName: deviceFromList, type: type) else {
@@ -210,6 +213,7 @@ func switchDeviceByDeviceIndexAndList(type: DeviceType, deviceIndex: Int, device
     guard let selectedDevice = setDefaultAudioDevice(type: type, deviceId: deviceId) else {
         fatalError("Device Not Found: \(deviceId)")
     }
+
     print(selectedDevice)
 }
 
