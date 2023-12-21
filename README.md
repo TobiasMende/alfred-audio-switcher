@@ -1,9 +1,15 @@
-# Switch Audio
+# Alfred App Audio Switcher Workflow
+This is a workflow for [Alfred](https://alfred.app/).
 
 ## About the Workflow
 This workflow supports quickly switching sound input and output devices.
 
 It offers hotkeys to quickly switch between three input favorites and output favorites. Those can also be triggered using Alfred Remote.
+
+### Listing Devices
+Once installed, use the `fetchaudiodevices` command in Alfred. Once you have selected either "Outputs" or "Inputs",
+the workflow will copy a list of devices to the Clipboard. This is a convenience feature to support filling the
+*Ignorelist*, *Output Favorites* and *Input Favorites*. (See below)
 
 ### Parameter Examples
 

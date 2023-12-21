@@ -970,7 +970,7 @@
 				<key>items</key>
 				<string>[{"imagefile":"0433844f12a776d9797a04b067e658c78b608f58.png","title":"Outputs","arg":"output","subtitle":"Select to Copy"},{"imagefile":"23f892692bbd1da4f098f206d9002d40b71e1be5.png","title":"Inputs","arg":"input","subtitle":"Select to Copy"}]</string>
 				<key>keyword</key>
-				<string>printdevices</string>
+				<string>fetchaudiodevices</string>
 				<key>matchmode</key>
 				<integer>0</integer>
 				<key>runningsubtext</key>
@@ -978,7 +978,7 @@
 				<key>subtext</key>
 				<string>Choose which devices to copy to clipboard</string>
 				<key>title</key>
-				<string>Print Devices</string>
+				<string>Fetch Audio Devices</string>
 				<key>withspace</key>
 				<false/>
 			</dict>
@@ -991,10 +991,15 @@
 		</dict>
 	</array>
 	<key>readme</key>
-	<string># Switch Audio
+	<string># Audio Switcher
 This workflow supports quickly switching sound input and output devices.
 
 It offers hotkeys to quickly switch between three input favorites and output favorites. Those can also be triggered using Alfred Remote.
+
+## Listing Devices
+Once installed, use the `fetchaudiodevices` command in Alfred. Once you have selected either "Outputs" or "Inputs",
+the workflow will copy a list of devices to the Clipboard. This is a convenience feature to support filling the
+*Ignorelist*, *Output Favorites* and *Input Favorites*. (See below)
 
 ## Parameter Examples
 
@@ -1185,7 +1190,7 @@ means the following:
 		<key>C46B89C0-5C32-4E45-84C4-714DAA27F2BD</key>
 		<dict>
 			<key>note</key>
-			<string>printdevices</string>
+			<string>fetchaudiodevices</string>
 			<key>xpos</key>
 			<real>425</real>
 			<key>ypos</key>
@@ -1295,7 +1300,7 @@ means the following:
 				<integer>6</integer>
 			</dict>
 			<key>description</key>
-			<string>List of up to three output names (one per line) – Hint: Get them from the "printdevices" command</string>
+			<string>List of up to three output names (one per line) – Hint: Get them from the "fetchaudiodevices" command</string>
 			<key>label</key>
 			<string>Output Favorites</string>
 			<key>type</key>
@@ -1316,7 +1321,7 @@ means the following:
 				<integer>6</integer>
 			</dict>
 			<key>description</key>
-			<string>List of up to three input names (one per line) – Hint: Get them from the "printdevices" command</string>
+			<string>List of up to three input names (one per line) – Hint: Get them from the "fetchaudiodevices" command</string>
 			<key>label</key>
 			<string>Input Favorites</string>
 			<key>type</key>
