@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>bundleid</key>
-	<string>io.mende.audioswitcher</string>
+	<string>io.mende.alfredapp-audioswitcher</string>
 	<key>category</key>
 	<string>Tools</string>
 	<key>connections</key>
@@ -311,7 +311,7 @@
 	<key>createdby</key>
 	<string>Tobias Mende</string>
 	<key>description</key>
-	<string>Switch sound output or input</string>
+	<string>Swiftly switch audio output and input devices</string>
 	<key>disabled</key>
 	<false/>
 	<key>name</key>
