@@ -14,7 +14,7 @@ let type = arguments[2] == "input" ? DeviceType.input : DeviceType.output
 if command == "list" {
     printDeviceItems(type: type, ignoreListAsMultilineString: arguments.count > 3 ? arguments[3] : "")
 } else if command == "switch_by_id" && arguments.count > 3 {
-    switchDeviceById(type: type, deviceIdAsString: arguments[3])
+    switchDeviceById(type: type, deviceIDAsString: arguments[3])
 } else if command == "print_device_names" {
     printDeviceNames(type: type)
 } else if command == "switch_by_name" && arguments.count > 4 {
@@ -41,9 +41,9 @@ func getPropertyAddress(type: DeviceType) -> AudioObjectPropertyAddress {
     return createPropertyAddress(selector: propertySelector)
 }
 
-func getAudioDeviceNameById(deviceId: AudioDeviceID) -> String {
-    guard let deviceName = getDeviceName(deviceId: deviceId) else {
-        fatalError("Error: Unable to get name for device ID \(deviceId)")
+func getAudioDeviceNameById(deviceID: AudioDeviceID) -> String {
+    guard let deviceName = getDeviceName(deviceID: deviceID) else {
+        fatalError("Error: Unable to get name for device ID \(deviceID)")
     }
 
     return deviceName
@@ -59,10 +59,10 @@ func getAudioDeviceIdByName(deviceName: String, type: DeviceType) -> AudioDevice
     return foundDevice?.id
 }
 
-func setDefaultAudioDevice(type: DeviceType, deviceId: AudioDeviceID) -> String? {
+func setDefaultAudioDevice(type: DeviceType, deviceID: AudioDeviceID) -> String? {
     var propertyAddress = getPropertyAddress(type: type)
 
-    var newDeviceID = deviceId
+    var newDeviceID = deviceID
     let propertySize = UInt32(MemoryLayout<AudioDeviceID>.size)
 
     let status = AudioObjectSetPropertyData(AudioObjectID(kAudioObjectSystemObject), &propertyAddress, 0, nil, propertySize, &newDeviceID)
@@ -70,16 +70,16 @@ func setDefaultAudioDevice(type: DeviceType, deviceId: AudioDeviceID) -> String?
         fatalError("Error: Unable to set default \(type) device")
     }
 
-    return getAudioDeviceNameById(deviceId: deviceId)
+    return getAudioDeviceNameById(deviceID: deviceID)
 }
 
-func getDeviceName(deviceId: AudioDeviceID) -> String? {
+func getDeviceName(deviceID: AudioDeviceID) -> String? {
     var nameSize = UInt32(MemoryLayout<CFString>.size)
     var deviceName: CFString = "" as CFString
     var address = createPropertyAddress(selector: kAudioDevicePropertyDeviceNameCFString)
 
     let status = withUnsafeMutablePointer(to: &deviceName) { ptr in
-        AudioObjectGetPropertyData(deviceId, &address, 0, nil, &nameSize, ptr)
+        AudioObjectGetPropertyData(deviceID, &address, 0, nil, &nameSize, ptr)
     }
 
     if status == noErr, let name = deviceName as String? {
@@ -98,7 +98,7 @@ func getDefaultAudioDevice(type: DeviceType) -> (name: String, id: AudioDeviceID
     if status != noErr {
         fatalError("Error: Unable to get default \(type) device")
     }
-    guard let deviceName = getDeviceName(deviceId: deviceID) else {
+    guard let deviceName = getDeviceName(deviceID: deviceID) else {
         fatalError("Failed to retrieve device Name for \(deviceID)")
     }
     return (name: deviceName, id: deviceID)
@@ -135,7 +135,7 @@ func getAudioDeviceList(type: DeviceType) -> [(name: String, id: AudioDeviceID)]
             continue  // Skip device if it doesn't have streams for the specified type
         }
 
-        guard let deviceName = getDeviceName(deviceId: id) else {
+        guard let deviceName = getDeviceName(deviceID: id) else {
             continue
         }
 
@@ -182,12 +182,12 @@ func printDeviceItems(type: DeviceType, ignoreListAsMultilineString: String) {
     print("{\"items\": [\(devicesAsJson)]}")
 }
 
-func switchDeviceById(type: DeviceType, deviceIdAsString: String) {
-    guard let deviceId = convertStringToDeviceID(deviceIDString: deviceIdAsString) else {
-        fatalError("Could not convert to AudioDeviceId: \(deviceIdAsString)")
+func switchDeviceById(type: DeviceType, deviceIDAsString: String) {
+    guard let deviceID = convertStringToDeviceID(deviceIDString: deviceIDAsString) else {
+        fatalError("Could not convert to AudioDeviceId: \(deviceIDAsString)")
     }
-    guard let selectedDevice = setDefaultAudioDevice(type: type, deviceId: deviceId) else {
-        fatalError("Device Not Found: \(deviceId)")
+    guard let selectedDevice = setDefaultAudioDevice(type: type, deviceID: deviceID) else {
+        fatalError("Device Not Found: \(deviceID)")
     }
 
     print(selectedDevice)
@@ -206,12 +206,12 @@ func switchDeviceByDeviceIndexAndList(type: DeviceType, deviceIndexAsString: Str
 
     let deviceFromList = deviceList[deviceIndex]
 
-    guard let deviceId = getAudioDeviceIdByName(deviceName: deviceFromList, type: type) else {
+    guard let deviceID = getAudioDeviceIdByName(deviceName: deviceFromList, type: type) else {
         fatalError("Device not found: Index: \(deviceIndex), deviceList: \(deviceList)")
     }
 
-    guard let selectedDevice = setDefaultAudioDevice(type: type, deviceId: deviceId) else {
-        fatalError("Device Not Found: \(deviceId)")
+    guard let selectedDevice = setDefaultAudioDevice(type: type, deviceID: deviceID) else {
+        fatalError("Device Not Found: \(deviceID)")
     }
 
     print(selectedDevice)
