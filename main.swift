@@ -10,22 +10,23 @@ enum AudioSwitcherError: Error {
     case runtimeError(String)
 }
 
+func createPropertyAddress(selector: AudioObjectPropertySelector) -> AudioObjectPropertyAddress {
+    return AudioObjectPropertyAddress(
+            mSelector: propertySelector,
+            mScope: kAudioObjectPropertyScopeGlobal,
+            mElement: kAudioObjectPropertyElementMain
+        )
+}
+
 func getPropertyAddress(type: DeviceType) -> AudioObjectPropertyAddress {
     let propertySelector: AudioObjectPropertySelector = (type == .input) ? kAudioHardwarePropertyDefaultInputDevice : kAudioHardwarePropertyDefaultOutputDevice
-    return AudioObjectPropertyAddress(
-        mSelector: propertySelector,
-        mScope: kAudioObjectPropertyScopeGlobal,
-        mElement: kAudioObjectPropertyElementMain
-    )
+    return createPropertyAddress(selector: propertySelector)
 }
 
 func getAudioDeviceNameById(deviceId: AudioDeviceID) -> String {
     var nameSize = UInt32(MemoryLayout<CFString>.size)
     var deviceName: CFString = "" as CFString
-    var namePropertyAddress = AudioObjectPropertyAddress(
-        mSelector: kAudioDevicePropertyDeviceNameCFString,
-        mScope: kAudioObjectPropertyScopeGlobal,
-        mElement: kAudioObjectPropertyElementMain)
+    var namePropertyAddress = createPropertyAddress(selector: kAudioDevicePropertyDeviceNameCFString)
 
     let status = AudioObjectGetPropertyData(deviceId, &namePropertyAddress, 0, nil, &nameSize, &deviceName)
     if status == noErr {
@@ -71,10 +72,7 @@ func getDefaultAudioDevice(type: DeviceType) -> (name: String, id: AudioDeviceID
 
     var nameSize = UInt32(MemoryLayout<CFString>.size)
     var deviceName: CFString = "" as CFString
-    var namePropertyAddress = AudioObjectPropertyAddress(
-        mSelector: kAudioDevicePropertyDeviceNameCFString,
-        mScope: kAudioObjectPropertyScopeGlobal,
-        mElement: kAudioObjectPropertyElementMain)
+    var namePropertyAddress = createPropertyAddress(selector: kAudioDevicePropertyDeviceNameCFString)
 
     let nameStatus = AudioObjectGetPropertyData(deviceID, &namePropertyAddress, 0, nil, &nameSize, &deviceName)
     if nameStatus == noErr {
@@ -86,10 +84,7 @@ func getDefaultAudioDevice(type: DeviceType) -> (name: String, id: AudioDeviceID
 
 func getAudioDeviceList(type: DeviceType) -> [(name: String, id: AudioDeviceID)] {
     var propertySize: UInt32 = 0
-    var address = AudioObjectPropertyAddress(
-        mSelector: kAudioHardwarePropertyDevices,
-        mScope: kAudioObjectPropertyScopeGlobal,
-        mElement: kAudioObjectPropertyElementMain)
+    var address = createPropertyAddress(selector: kAudioHardwarePropertyDevices)
 
     var status = AudioObjectGetPropertyDataSize(AudioObjectID(kAudioObjectSystemObject), &address, 0, nil, &propertySize)
     guard status == noErr else {
@@ -121,10 +116,7 @@ func getAudioDeviceList(type: DeviceType) -> [(name: String, id: AudioDeviceID)]
         var nameSize = UInt32(MemoryLayout<CFString>.size)
         var deviceName: CFString = "" as CFString
 
-        var namePropertyAddress = AudioObjectPropertyAddress(
-            mSelector: kAudioDevicePropertyDeviceNameCFString,
-            mScope: kAudioObjectPropertyScopeGlobal,
-            mElement: kAudioObjectPropertyElementMain)
+        var namePropertyAddress = createPropertyAddress(selector: kAudioDevicePropertyDeviceNameCFString)
 
         status = AudioObjectGetPropertyData(id, &namePropertyAddress, 0, nil, &nameSize, &deviceName)
         if status == noErr {
@@ -149,8 +141,8 @@ func deviceToJson(device: (name: String, id: AudioDeviceID), isDefault: Bool, ty
     return "{\"title\": \"\(device.name)\", \"uid\": \"\(device.name)\", \"autocomplete\": \"\(device.name)\", \"arg\": \"\(device.id)\", \"icon\": {\"path\": \"./icons/\(iconName)\"}}"
 }
 
-func filterAudioDevices(devices: [(name: String, id: AudioDeviceID)], blocklist: [String]) -> [(name: String, id: AudioDeviceID)] {
-    return devices.filter { !blocklist.contains($0.name) }
+func filterAudioDevices(devices: [(name: String, id: AudioDeviceID)], ignorelist: [String]) -> [(name: String, id: AudioDeviceID)] {
+    return devices.filter { !ignorelist.contains($0.name) }
 }
 
 let arguments = CommandLine.arguments
@@ -164,28 +156,28 @@ guard arguments.count > 2 else {
 let command = arguments[1]
 let type = arguments[2] == "input" ? DeviceType.input : DeviceType.output
           
-if command == "-l" {
-    let blocklist = arguments.count > 3 ? arguments[3].split(separator: "\n").map(String.init) : []
+if command == "list" {
+    let ignorelist = arguments.count > 3 ? arguments[3].split(separator: "\n").map(String.init) : []
 
     let defaultDevice = getDefaultAudioDevice(type: type)
     let devices = getAudioDeviceList(type: type)
-    let devicesAsJson = filterAudioDevices(devices: devices, blocklist: blocklist).map { device in
+    let devicesAsJson = filterAudioDevices(devices: devices, ignorelist: ignorelist).map { device in
         let isDefault = (defaultDevice.id == device.id)
         return deviceToJson(device: device, isDefault: isDefault, type: type)
     }.joined(separator: ",")
     
     print("{\"items\": [\(devicesAsJson)]}")
     
-} else if command == "-s" && arguments.count > 3 {
+} else if command == "switch_by_id" && arguments.count > 3 {
     let deviceId = convertStringToDeviceID(deviceIDString: arguments[3])
     let deviceName = setDefaultAudioDevice(type: type, deviceId: deviceId.unsafelyUnwrapped)
     let description = deviceName != nil ? deviceName : "unknown"
     print(description!)
-} else if command == "-p" {
+} else if command == "print_device_names" {
     getAudioDeviceList(type: type).forEach { device in
         print(device.name)
     }
-} else if command == "-n" && arguments.count > 3 {
+} else if command == "switch_by_name" && arguments.count > 3 {
     guard let deviceIndex = Int(arguments[3]) else {
         throw AudioSwitcherError.runtimeError("Invalid Device Index: \(arguments[3])")
     }

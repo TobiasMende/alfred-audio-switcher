@@ -326,7 +326,7 @@
 				<key>escaping</key>
 				<integer>102</integer>
 				<key>script</key>
-				<string>./main.swift -s output "{query}"</string>
+				<string>./main.swift switch_by_id output "{query}"</string>
 				<key>scriptargtype</key>
 				<integer>0</integer>
 				<key>scriptfile</key>
@@ -369,7 +369,7 @@
 				<key>runningsubtext</key>
 				<string>waiting</string>
 				<key>script</key>
-				<string>./main.swift -l output "$ignorelist"</string>
+				<string>./main.swift list output "$ignorelist"</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
 				<key>scriptfile</key>
@@ -460,7 +460,7 @@
 				<key>runningsubtext</key>
 				<string>waiting</string>
 				<key>script</key>
-				<string>./main.swift -l input "$ignorelist"</string>
+				<string>./main.swift list input "$ignorelist"</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
 				<key>scriptfile</key>
@@ -489,7 +489,7 @@
 				<key>escaping</key>
 				<integer>68</integer>
 				<key>script</key>
-				<string>./main.swift -s input "{query}"</string>
+				<string>./main.swift switch_by_id input "{query}"</string>
 				<key>scriptargtype</key>
 				<integer>0</integer>
 				<key>scriptfile</key>
@@ -587,7 +587,7 @@
 				<key>escaping</key>
 				<integer>68</integer>
 				<key>script</key>
-				<string>./main.swift -n output "{query}" "$outputs"</string>
+				<string>./main.swift switch_by_name output "{query}" "$outputs"</string>
 				<key>scriptargtype</key>
 				<integer>0</integer>
 				<key>scriptfile</key>
@@ -793,7 +793,7 @@
 				<key>escaping</key>
 				<integer>68</integer>
 				<key>script</key>
-				<string>./main.swift -n input "{query}" "$inputs"</string>
+				<string>./main.swift switch_by_name input "{query}" "$inputs"</string>
 				<key>scriptargtype</key>
 				<integer>0</integer>
 				<key>scriptfile</key>
@@ -943,7 +943,7 @@
 				<key>escaping</key>
 				<integer>68</integer>
 				<key>script</key>
-				<string>./main.swift -p "{query}"</string>
+				<string>./main.swift print_device_names "{query}"</string>
 				<key>scriptargtype</key>
 				<integer>0</integer>
 				<key>scriptfile</key>
@@ -1330,6 +1330,6 @@ means the following:
 	<key>version</key>
 	<string>1.0</string>
 	<key>webaddress</key>
-	<string></string>
+	<string>https://github.com/TobiasMende/alfred-audio-switcher</string>
 </dict>
 </plist>
