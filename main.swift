@@ -1,4 +1,4 @@
-#!/usr/bin/swift -suppress-warnings
+#!/usr/bin/swift
 import Foundation
 import CoreAudio
 
@@ -20,16 +20,11 @@ func getPropertyAddress(type: DeviceType) -> AudioObjectPropertyAddress {
 }
 
 func getAudioDeviceNameById(deviceId: AudioDeviceID) -> String {
-    var nameSize = UInt32(MemoryLayout<CFString>.size)
-    var deviceName: CFString = "" as CFString
-    var namePropertyAddress = createPropertyAddress(selector: kAudioDevicePropertyDeviceNameCFString)
-
-    let status = AudioObjectGetPropertyData(deviceId, &namePropertyAddress, 0, nil, &nameSize, &deviceName)
-    if status == noErr {
-        return deviceName as String
-    } else {
+    guard let deviceName = getDeviceName(deviceId: deviceId) else {
         fatalError("Error: Unable to get name for device ID \(deviceId)")
     }
+
+    return deviceName
 }
 
 func getAudioDeviceIdByName(deviceName: String, type: DeviceType) -> AudioDeviceID? {
@@ -56,6 +51,22 @@ func setDefaultAudioDevice(type: DeviceType, deviceId: AudioDeviceID) -> String?
     return getAudioDeviceNameById(deviceId: deviceId)
 }
 
+func getDeviceName(deviceId: AudioDeviceID) -> String? {
+    var nameSize = UInt32(MemoryLayout<CFString>.size)
+    var deviceName: CFString = "" as CFString
+    var address = createPropertyAddress(selector: kAudioDevicePropertyDeviceNameCFString)
+
+    let status = withUnsafeMutablePointer(to: &deviceName) { ptr in
+        AudioObjectGetPropertyData(deviceId, &address, 0, nil, &nameSize, ptr)
+    }
+
+    if status == noErr, let name = deviceName as String? {
+        return name
+    } else {
+        return nil
+    }
+}
+
 func getDefaultAudioDevice(type: DeviceType) -> (name: String, id: AudioDeviceID) {
     var deviceID = AudioDeviceID()
     var propertySize = UInt32(MemoryLayout<AudioDeviceID>.size)
@@ -65,17 +76,10 @@ func getDefaultAudioDevice(type: DeviceType) -> (name: String, id: AudioDeviceID
     if status != noErr {
         fatalError("Error: Unable to get default \(type) device")
     }
-
-    var nameSize = UInt32(MemoryLayout<CFString>.size)
-    var deviceName: CFString = "" as CFString
-    var namePropertyAddress = createPropertyAddress(selector: kAudioDevicePropertyDeviceNameCFString)
-
-    let nameStatus = AudioObjectGetPropertyData(deviceID, &namePropertyAddress, 0, nil, &nameSize, &deviceName)
-    if nameStatus == noErr {
-        return (name: deviceName as String, id: deviceID)
-    } else {
-        fatalError("Error: Unable to get name for default \(type) device")
+    guard let deviceName = getDeviceName(deviceId: deviceID) else {
+        fatalError("Failed to retrieve device Name for \(deviceID)")
     }
+    return (name: deviceName as String, id: deviceID)
 }
 
 func getAudioDeviceList(type: DeviceType) -> [(name: String, id: AudioDeviceID)] {
@@ -109,14 +113,10 @@ func getAudioDeviceList(type: DeviceType) -> [(name: String, id: AudioDeviceID)]
             continue  // Skip device if it doesn't have streams for the specified type
         }
 
-        var nameSize = UInt32(MemoryLayout<CFString>.size)
-        var deviceName: CFString = "" as CFString
+        let deviceName = getDeviceName(deviceId: id)
 
-        var namePropertyAddress = createPropertyAddress(selector: kAudioDevicePropertyDeviceNameCFString)
-
-        status = AudioObjectGetPropertyData(id, &namePropertyAddress, 0, nil, &nameSize, &deviceName)
-        if status == noErr {
-            deviceList.append((name: deviceName as String, id: id))
+        if (deviceName != nil) {
+            deviceList.append((name: deviceName! as String, id: id))
         }
     }
 
@@ -137,8 +137,8 @@ func deviceToJson(device: (name: String, id: AudioDeviceID), isDefault: Bool, ty
     return "{\"title\": \"\(device.name)\", \"uid\": \"\(device.name)\", \"autocomplete\": \"\(device.name)\", \"arg\": \"\(device.id)\", \"icon\": {\"path\": \"./icons/\(iconName)\"}}"
 }
 
-func filterAudioDevices(devices: [(name: String, id: AudioDeviceID)], ignorelist: [String]) -> [(name: String, id: AudioDeviceID)] {
-    return devices.filter { !ignorelist.contains($0.name) }
+func filterAudioDevices(devices: [(name: String, id: AudioDeviceID)], ignoreList: [String]) -> [(name: String, id: AudioDeviceID)] {
+    return devices.filter { !ignoreList.contains($0.name) }
 }
 
 func printDeviceNames(type: DeviceType) {
@@ -150,7 +150,7 @@ func printDeviceNames(type: DeviceType) {
 func printDeviceItems(type: DeviceType, ignoreList: [String]) {
     let defaultDevice = getDefaultAudioDevice(type: type)
     let devices = getAudioDeviceList(type: type)
-    let devicesAsJson = filterAudioDevices(devices: devices, ignorelist: ignoreList).map { device in
+    let devicesAsJson = filterAudioDevices(devices: devices, ignoreList: ignoreList).map { device in
         let isDefault = (defaultDevice.id == device.id)
         return deviceToJson(device: device, isDefault: isDefault, type: type)
     }.joined(separator: ",")
@@ -173,13 +173,15 @@ func switchDeviceByDeviceIndexAndList(type: DeviceType, deviceIndex: Int, device
     if deviceIndex >= deviceList.count {
         fatalError("Invalid Index Passed")
     }
-    let selectedDevice = deviceList[deviceIndex]
+    let deviceFromList = deviceList[deviceIndex]
 
-    guard let deviceId = getAudioDeviceIdByName(deviceName: selectedDevice, type: type) else {
+    guard let deviceId = getAudioDeviceIdByName(deviceName: deviceFromList, type: type) else {
         fatalError("Device not found: Index: \(deviceIndex), deviceList: \(deviceList)")
     }
 
-    setDefaultAudioDevice(type: type, deviceId: deviceId)
+    guard let selectedDevice = setDefaultAudioDevice(type: type, deviceId: deviceId) else {
+        fatalError("Device Not Found: \(deviceId)")
+    }
     print(selectedDevice)
 }
 
