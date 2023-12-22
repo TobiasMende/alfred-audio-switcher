@@ -7,7 +7,7 @@
 	<key>hidelabels</key>
 	<false/>
 	<key>iconid</key>
-	<string>CB3157C0-71EB-4232-B98B-B81F3D36DBD5</string>
+	<string>1087F40F-223B-4FD8-9D7E-3E3AFBBFCB28</string>
 	<key>iconisuserspecified</key>
 	<true/>
 	<key>items</key>
@@ -17,13 +17,15 @@
 			<dict>
 				<key>autoworkflowuid</key>
 				<true/>
+				<key>confirm</key>
+				<false/>
 				<key>triggerid</key>
 				<string>io.mende.audioswitcher.out</string>
 			</dict>
 			<key>actionuid</key>
 			<string>remote.alfred.runworkflow</string>
 			<key>buttoniconid</key>
-			<string>5E0C6C53-0E40-4EEE-8EE1-076B36DBEF42</string>
+			<string>40AD86DC-2F23-492C-B2D1-08929C492E0B</string>
 			<key>buttonlabel</key>
 			<string>Select Output</string>
 			<key>itemuid</key>
@@ -34,13 +36,15 @@
 			<dict>
 				<key>autoworkflowuid</key>
 				<true/>
+				<key>confirm</key>
+				<false/>
 				<key>triggerid</key>
 				<string>io.mende.audioswitcher.in</string>
 			</dict>
 			<key>actionuid</key>
 			<string>remote.alfred.runworkflow</string>
 			<key>buttoniconid</key>
-			<string>82E30A88-C2CF-46CD-992C-8E7B59184C3B</string>
+			<string>87ADC83C-BEC2-4413-9593-B84836DF334E</string>
 			<key>buttonlabel</key>
 			<string>Select Input</string>
 			<key>itemuid</key>
@@ -53,13 +57,15 @@
 			<dict>
 				<key>autoworkflowuid</key>
 				<true/>
+				<key>confirm</key>
+				<false/>
 				<key>triggerid</key>
 				<string>io.mende.audioswitcher.out1</string>
 			</dict>
 			<key>actionuid</key>
 			<string>remote.alfred.runworkflow</string>
 			<key>buttoniconid</key>
-			<string>96C6AADD-48CF-433E-BAFC-1031F14F30EE</string>
+			<string>DD79A2C0-84C6-4BBF-BF3E-F30DA82567A2</string>
 			<key>buttonlabel</key>
 			<string>Select Output 1</string>
 			<key>itemuid</key>
@@ -70,13 +76,15 @@
 			<dict>
 				<key>autoworkflowuid</key>
 				<true/>
+				<key>confirm</key>
+				<false/>
 				<key>triggerid</key>
 				<string>io.mende.audioswitcher.out2</string>
 			</dict>
 			<key>actionuid</key>
 			<string>remote.alfred.runworkflow</string>
 			<key>buttoniconid</key>
-			<string>45199480-64F4-44F8-90CB-C41CDFC94667</string>
+			<string>E689AAFE-047D-4F33-AF0F-F4C0162707BA</string>
 			<key>buttonlabel</key>
 			<string>Select Output 2</string>
 			<key>itemuid</key>
@@ -87,13 +95,15 @@
 			<dict>
 				<key>autoworkflowuid</key>
 				<true/>
+				<key>confirm</key>
+				<false/>
 				<key>triggerid</key>
 				<string>io.mende.audioswitcher.out3</string>
 			</dict>
 			<key>actionuid</key>
 			<string>remote.alfred.runworkflow</string>
 			<key>buttoniconid</key>
-			<string>FF62F6E7-B62F-408B-8A15-699D56B3A7DC</string>
+			<string>C966F8A3-DEF0-4959-AFB3-02D7591DDC07</string>
 			<key>buttonlabel</key>
 			<string>Select Output 3</string>
 			<key>itemuid</key>
@@ -105,13 +115,15 @@
 			<dict>
 				<key>autoworkflowuid</key>
 				<true/>
+				<key>confirm</key>
+				<false/>
 				<key>triggerid</key>
 				<string>io.mende.audioswitcher.in1</string>
 			</dict>
 			<key>actionuid</key>
 			<string>remote.alfred.runworkflow</string>
 			<key>buttoniconid</key>
-			<string>D450D5C4-0470-48F3-882E-977085121622</string>
+			<string>9EE11D58-1E5E-4998-9244-816938F5E03C</string>
 			<key>buttonlabel</key>
 			<string>Select Input 1</string>
 			<key>itemuid</key>
@@ -122,13 +134,15 @@
 			<dict>
 				<key>autoworkflowuid</key>
 				<true/>
+				<key>confirm</key>
+				<false/>
 				<key>triggerid</key>
 				<string>io.mende.audioswitcher.in2</string>
 			</dict>
 			<key>actionuid</key>
 			<string>remote.alfred.runworkflow</string>
 			<key>buttoniconid</key>
-			<string>97EFE3D4-F8CC-4247-ACA4-0B407511BBFB</string>
+			<string>7A4C66E5-7DBE-4D49-B3F9-7B48997E5DE4</string>
 			<key>buttonlabel</key>
 			<string>Select Input 2</string>
 			<key>itemuid</key>
@@ -139,13 +153,15 @@
 			<dict>
 				<key>autoworkflowuid</key>
 				<true/>
+				<key>confirm</key>
+				<false/>
 				<key>triggerid</key>
 				<string>io.mende.audioswitcher.in3</string>
 			</dict>
 			<key>actionuid</key>
 			<string>remote.alfred.runworkflow</string>
 			<key>buttoniconid</key>
-			<string>2C76868E-E59B-4951-88F4-AAD91BBFEE1B</string>
+			<string>AC51B392-A245-467B-BE86-56F7A911784C</string>
 			<key>buttonlabel</key>
 			<string>Select Input 3</string>
 			<key>itemuid</key>
@@ -164,13 +180,15 @@
 			<dict>
 				<key>autoworkflowuid</key>
 				<true/>
+				<key>confirm</key>
+				<false/>
 				<key>triggerid</key>
 				<string>io.mende.audioswitcher.out</string>
 			</dict>
 			<key>actionuid</key>
 			<string>remote.alfred.runworkflow</string>
 			<key>buttoniconid</key>
-			<string>5E0C6C53-0E40-4EEE-8EE1-076B36DBEF42</string>
+			<string>40AD86DC-2F23-492C-B2D1-08929C492E0B</string>
 			<key>buttonlabel</key>
 			<string>Select Output</string>
 			<key>itemuid</key>
@@ -181,13 +199,15 @@
 			<dict>
 				<key>autoworkflowuid</key>
 				<true/>
+				<key>confirm</key>
+				<false/>
 				<key>triggerid</key>
 				<string>io.mende.audioswitcher.in</string>
 			</dict>
 			<key>actionuid</key>
 			<string>remote.alfred.runworkflow</string>
 			<key>buttoniconid</key>
-			<string>82E30A88-C2CF-46CD-992C-8E7B59184C3B</string>
+			<string>87ADC83C-BEC2-4413-9593-B84836DF334E</string>
 			<key>buttonlabel</key>
 			<string>Select Input</string>
 			<key>itemuid</key>
@@ -200,13 +220,15 @@
 			<dict>
 				<key>autoworkflowuid</key>
 				<true/>
+				<key>confirm</key>
+				<false/>
 				<key>triggerid</key>
 				<string>io.mende.audioswitcher.out1</string>
 			</dict>
 			<key>actionuid</key>
 			<string>remote.alfred.runworkflow</string>
 			<key>buttoniconid</key>
-			<string>96C6AADD-48CF-433E-BAFC-1031F14F30EE</string>
+			<string>DD79A2C0-84C6-4BBF-BF3E-F30DA82567A2</string>
 			<key>buttonlabel</key>
 			<string>Select Output 1</string>
 			<key>itemuid</key>
@@ -217,13 +239,15 @@
 			<dict>
 				<key>autoworkflowuid</key>
 				<true/>
+				<key>confirm</key>
+				<false/>
 				<key>triggerid</key>
 				<string>io.mende.audioswitcher.out2</string>
 			</dict>
 			<key>actionuid</key>
 			<string>remote.alfred.runworkflow</string>
 			<key>buttoniconid</key>
-			<string>45199480-64F4-44F8-90CB-C41CDFC94667</string>
+			<string>E689AAFE-047D-4F33-AF0F-F4C0162707BA</string>
 			<key>buttonlabel</key>
 			<string>Select Output 2</string>
 			<key>itemuid</key>
@@ -234,13 +258,15 @@
 			<dict>
 				<key>autoworkflowuid</key>
 				<true/>
+				<key>confirm</key>
+				<false/>
 				<key>triggerid</key>
 				<string>io.mende.audioswitcher.out3</string>
 			</dict>
 			<key>actionuid</key>
 			<string>remote.alfred.runworkflow</string>
 			<key>buttoniconid</key>
-			<string>FF62F6E7-B62F-408B-8A15-699D56B3A7DC</string>
+			<string>C966F8A3-DEF0-4959-AFB3-02D7591DDC07</string>
 			<key>buttonlabel</key>
 			<string>Select Output 3</string>
 			<key>itemuid</key>
@@ -252,13 +278,15 @@
 			<dict>
 				<key>autoworkflowuid</key>
 				<true/>
+				<key>confirm</key>
+				<false/>
 				<key>triggerid</key>
 				<string>io.mende.audioswitcher.in1</string>
 			</dict>
 			<key>actionuid</key>
 			<string>remote.alfred.runworkflow</string>
 			<key>buttoniconid</key>
-			<string>D450D5C4-0470-48F3-882E-977085121622</string>
+			<string>9EE11D58-1E5E-4998-9244-816938F5E03C</string>
 			<key>buttonlabel</key>
 			<string>Select Input 1</string>
 			<key>itemuid</key>
@@ -269,13 +297,15 @@
 			<dict>
 				<key>autoworkflowuid</key>
 				<true/>
+				<key>confirm</key>
+				<false/>
 				<key>triggerid</key>
 				<string>io.mende.audioswitcher.in2</string>
 			</dict>
 			<key>actionuid</key>
 			<string>remote.alfred.runworkflow</string>
 			<key>buttoniconid</key>
-			<string>97EFE3D4-F8CC-4247-ACA4-0B407511BBFB</string>
+			<string>7A4C66E5-7DBE-4D49-B3F9-7B48997E5DE4</string>
 			<key>buttonlabel</key>
 			<string>Select Input 2</string>
 			<key>itemuid</key>
@@ -286,13 +316,15 @@
 			<dict>
 				<key>autoworkflowuid</key>
 				<true/>
+				<key>confirm</key>
+				<false/>
 				<key>triggerid</key>
 				<string>io.mende.audioswitcher.in3</string>
 			</dict>
 			<key>actionuid</key>
 			<string>remote.alfred.runworkflow</string>
 			<key>buttoniconid</key>
-			<string>2C76868E-E59B-4951-88F4-AAD91BBFEE1B</string>
+			<string>AC51B392-A245-467B-BE86-56F7A911784C</string>
 			<key>buttonlabel</key>
 			<string>Select Input 3</string>
 			<key>itemuid</key>

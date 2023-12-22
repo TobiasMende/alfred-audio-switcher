@@ -375,9 +375,9 @@
 				<key>scriptfile</key>
 				<string></string>
 				<key>subtext</key>
-				<string>Select an output device</string>
+				<string>Select an Output Device</string>
 				<key>title</key>
-				<string>sound</string>
+				<string>Audio Outputs</string>
 				<key>type</key>
 				<integer>11</integer>
 				<key>withspace</key>
@@ -466,9 +466,9 @@
 				<key>scriptfile</key>
 				<string></string>
 				<key>subtext</key>
-				<string>select an input device</string>
+				<string>Select an Input Device</string>
 				<key>title</key>
-				<string>input</string>
+				<string>Audio Inputs</string>
 				<key>type</key>
 				<integer>11</integer>
 				<key>withspace</key>
@@ -968,7 +968,7 @@
 				<key>fixedorder</key>
 				<false/>
 				<key>items</key>
-				<string>[{"imagefile":"0433844f12a776d9797a04b067e658c78b608f58.png","title":"Outputs","arg":"output","subtitle":"Choose to Copy"},{"imagefile":"23f892692bbd1da4f098f206d9002d40b71e1be5.png","title":"Inputs","arg":"input","subtitle":"Choose to Copy"}]</string>
+				<string>[{"imagefile":"b171fc8163f973fcfe9f43d328811fe1096dcebe.png","title":"Outputs","arg":"output","subtitle":"Choose to Copy"},{"imagefile":"3ab9aedf8fbd94a12254709139ffcee0a288338b.png","title":"Inputs","arg":"input","subtitle":"Choose to Copy"}]</string>
 				<key>keyword</key>
 				<string>fetchaudiodevices</string>
 				<key>matchmode</key>
