@@ -326,9 +326,9 @@
 				<key>escaping</key>
 				<integer>102</integer>
 				<key>script</key>
-				<string>./main.swift switch_by_id output "{query}"</string>
+				<string>./main.swift switch_by_id output $1</string>
 				<key>scriptargtype</key>
-				<integer>0</integer>
+				<integer>1</integer>
 				<key>scriptfile</key>
 				<string></string>
 				<key>type</key>
@@ -489,9 +489,9 @@
 				<key>escaping</key>
 				<integer>68</integer>
 				<key>script</key>
-				<string>./main.swift switch_by_id input "{query}"</string>
+				<string>./main.swift switch_by_id input $1</string>
 				<key>scriptargtype</key>
-				<integer>0</integer>
+				<integer>1</integer>
 				<key>scriptfile</key>
 				<string></string>
 				<key>type</key>
@@ -587,9 +587,9 @@
 				<key>escaping</key>
 				<integer>68</integer>
 				<key>script</key>
-				<string>./main.swift switch_by_name output "{query}" "$outputs"</string>
+				<string>./main.swift switch_by_name output $1 "$outputs"</string>
 				<key>scriptargtype</key>
-				<integer>0</integer>
+				<integer>1</integer>
 				<key>scriptfile</key>
 				<string></string>
 				<key>type</key>
@@ -793,9 +793,9 @@
 				<key>escaping</key>
 				<integer>68</integer>
 				<key>script</key>
-				<string>./main.swift switch_by_name input "{query}" "$inputs"</string>
+				<string>./main.swift switch_by_name input $1 "$inputs"</string>
 				<key>scriptargtype</key>
-				<integer>0</integer>
+				<integer>1</integer>
 				<key>scriptfile</key>
 				<string></string>
 				<key>type</key>
@@ -943,9 +943,9 @@
 				<key>escaping</key>
 				<integer>68</integer>
 				<key>script</key>
-				<string>./main.swift print_device_names "{query}"</string>
+				<string>./main.swift print_device_names $1</string>
 				<key>scriptargtype</key>
-				<integer>0</integer>
+				<integer>1</integer>
 				<key>scriptfile</key>
 				<string></string>
 				<key>type</key>
@@ -1331,7 +1331,7 @@ means the following:
 		</dict>
 	</array>
 	<key>version</key>
-	<string>1.1.0</string>
+	<string>1.1.1</string>
 	<key>webaddress</key>
 	<string>https://github.com/TobiasMende/alfred-audio-switcher</string>
 </dict>
