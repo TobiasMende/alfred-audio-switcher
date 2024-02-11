@@ -19,7 +19,9 @@ if command == "list" {
     printDeviceNames(type: type)
 } else if command == "switch_by_name" && arguments.count > 4 {
     switchDeviceByDeviceIndexAndList(type: type, deviceIndexAsString: arguments[3], deviceListAsMultilineString: arguments[4])
-} else {
+} else if command == "rotate_favorites" && arguments.count > 3 {
+    rotateFavorites(type: type, deviceListAsMultilineString: arguments[3])
+}else {
     printUsageAndExit()
 }
 
@@ -221,9 +223,26 @@ func convertMultilineArgumentToList(argument: String) -> [String] {
     return argument.split(separator: "\n").map(String.init)
 }
 
+func rotateFavorites(type: DeviceType, deviceListAsMultilineString: String) {
+    let defaultDevice = getDefaultAudioDevice(type: type)
+    let deviceList = convertMultilineArgumentToList(argument: deviceListAsMultilineString)
+    let defaultDeviceIndex = deviceList.firstIndex(of: defaultDevice.name) ?? -1
+    let nextDeviceIndex = (defaultDeviceIndex + 1) % deviceList.count
+    guard let nextDeviceID = getAudioDeviceIdByName(deviceName: deviceList[nextDeviceIndex], type: type) else {
+        fatalError("Device not found: \(deviceList[nextDeviceIndex])")
+    }
+
+    guard let selectedDevice = setDefaultAudioDevice(type: type, deviceID: nextDeviceID) else {
+        fatalError("Device Not Found: \(nextDeviceID)")
+    }
+
+    print(selectedDevice)
+}
+
+
 func printUsageAndExit() {
     print("Usage: ./main.swift <command> <type> [<ignoreList>|<deviceIndex> <deviceList>]")
-    print("command: (list | switch_by_id | switch_by_name | print_device_names)")
+    print("command: (list | switch_by_id | switch_by_name | rotate_favorites | print_device_names)")
     print("type: (input | output)")
     exit(1)
 }
