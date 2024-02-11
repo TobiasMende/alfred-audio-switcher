@@ -226,6 +226,10 @@ func convertMultilineArgumentToList(argument: String) -> [String] {
 func rotateFavorites(type: DeviceType, deviceListAsMultilineString: String) {
     let defaultDevice = getDefaultAudioDevice(type: type)
     let deviceList = convertMultilineArgumentToList(argument: deviceListAsMultilineString)
+    guard deviceList.count > 0 else {
+        fatalError("No devices in list")
+    }
+
     let defaultDeviceIndex = deviceList.firstIndex(of: defaultDevice.name) ?? -1
     let nextDeviceIndex = (defaultDeviceIndex + 1) % deviceList.count
     guard let nextDeviceID = getAudioDeviceIdByName(deviceName: deviceList[nextDeviceIndex], type: type) else {
