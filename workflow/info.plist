@@ -21,50 +21,11 @@
 				<false/>
 			</dict>
 		</array>
-		<key>03188D40-8A61-45DD-9D03-E374010B0995</key>
-		<array>
-			<dict>
-				<key>destinationuid</key>
-				<string>39B059B1-CD01-4C2D-8907-1E2F9262CD04</string>
-				<key>modifiers</key>
-				<integer>0</integer>
-				<key>modifiersubtext</key>
-				<string></string>
-				<key>vitoclose</key>
-				<false/>
-			</dict>
-		</array>
-		<key>0DC66D50-CC12-4D4D-B64B-8D73E610C9F5</key>
-		<array>
-			<dict>
-				<key>destinationuid</key>
-				<string>39B059B1-CD01-4C2D-8907-1E2F9262CD04</string>
-				<key>modifiers</key>
-				<integer>0</integer>
-				<key>modifiersubtext</key>
-				<string></string>
-				<key>vitoclose</key>
-				<false/>
-			</dict>
-		</array>
 		<key>1450496C-74BC-4EDE-930B-ADC6027C5449</key>
 		<array>
 			<dict>
 				<key>destinationuid</key>
 				<string>FCE19CD4-E3AE-4361-8B59-F357914A629C</string>
-				<key>modifiers</key>
-				<integer>0</integer>
-				<key>modifiersubtext</key>
-				<string></string>
-				<key>vitoclose</key>
-				<false/>
-			</dict>
-		</array>
-		<key>16B36DE1-595B-4D0B-9D16-65335E373CEE</key>
-		<array>
-			<dict>
-				<key>destinationuid</key>
-				<string>03188D40-8A61-45DD-9D03-E374010B0995</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -99,11 +60,11 @@
 				<false/>
 			</dict>
 		</array>
-		<key>4761A9B3-DF5B-4E2F-8315-C6BC3D526C5E</key>
+		<key>6CDEB1A2-F0E3-4C17-955A-7AA171D8C899</key>
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>0DC66D50-CC12-4D4D-B64B-8D73E610C9F5</string>
+				<string>3B2897E7-E242-4504-A297-602265B0011F</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -112,7 +73,7 @@
 				<false/>
 			</dict>
 		</array>
-		<key>6CDEB1A2-F0E3-4C17-955A-7AA171D8C899</key>
+		<key>6EEBB03A-5A12-4883-BEF4-2DAC11BF0FC0</key>
 		<array>
 			<dict>
 				<key>destinationuid</key>
@@ -127,16 +88,6 @@
 		</array>
 		<key>7155F88D-55F6-4608-BC2E-554BA0780537</key>
 		<array>
-			<dict>
-				<key>destinationuid</key>
-				<string>0DC66D50-CC12-4D4D-B64B-8D73E610C9F5</string>
-				<key>modifiers</key>
-				<integer>0</integer>
-				<key>modifiersubtext</key>
-				<string></string>
-				<key>vitoclose</key>
-				<false/>
-			</dict>
 			<dict>
 				<key>destinationuid</key>
 				<string>F6A49F45-6CB5-4CDF-BB3E-79B7715ACA0F</string>
@@ -199,16 +150,6 @@
 				<key>vitoclose</key>
 				<false/>
 			</dict>
-			<dict>
-				<key>destinationuid</key>
-				<string>03188D40-8A61-45DD-9D03-E374010B0995</string>
-				<key>modifiers</key>
-				<integer>0</integer>
-				<key>modifiersubtext</key>
-				<string></string>
-				<key>vitoclose</key>
-				<false/>
-			</dict>
 		</array>
 		<key>9D6F6749-4476-48A0-BF59-8B80656B1F51</key>
 		<array>
@@ -248,16 +189,6 @@
 				<key>vitoclose</key>
 				<false/>
 			</dict>
-			<dict>
-				<key>destinationuid</key>
-				<string>03188D40-8A61-45DD-9D03-E374010B0995</string>
-				<key>modifiers</key>
-				<integer>0</integer>
-				<key>modifiersubtext</key>
-				<string></string>
-				<key>vitoclose</key>
-				<false/>
-			</dict>
 		</array>
 		<key>A3266036-2FB4-4E74-B315-F9951154B58F</key>
 		<array>
@@ -277,16 +208,6 @@
 			<dict>
 				<key>destinationuid</key>
 				<string>3B2897E7-E242-4504-A297-602265B0011F</string>
-				<key>modifiers</key>
-				<integer>0</integer>
-				<key>modifiersubtext</key>
-				<string></string>
-				<key>vitoclose</key>
-				<false/>
-			</dict>
-			<dict>
-				<key>destinationuid</key>
-				<string>03188D40-8A61-45DD-9D03-E374010B0995</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -325,16 +246,6 @@
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>0DC66D50-CC12-4D4D-B64B-8D73E610C9F5</string>
-				<key>modifiers</key>
-				<integer>0</integer>
-				<key>modifiersubtext</key>
-				<string></string>
-				<key>vitoclose</key>
-				<false/>
-			</dict>
-			<dict>
-				<key>destinationuid</key>
 				<string>F6A49F45-6CB5-4CDF-BB3E-79B7715ACA0F</string>
 				<key>modifiers</key>
 				<integer>0</integer>
@@ -361,30 +272,7 @@
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>0DC66D50-CC12-4D4D-B64B-8D73E610C9F5</string>
-				<key>modifiers</key>
-				<integer>0</integer>
-				<key>modifiersubtext</key>
-				<string></string>
-				<key>vitoclose</key>
-				<false/>
-			</dict>
-			<dict>
-				<key>destinationuid</key>
 				<string>F6A49F45-6CB5-4CDF-BB3E-79B7715ACA0F</string>
-				<key>modifiers</key>
-				<integer>0</integer>
-				<key>modifiersubtext</key>
-				<string></string>
-				<key>vitoclose</key>
-				<false/>
-			</dict>
-		</array>
-		<key>EF2D66EC-97C2-48FD-9A62-9004E2A09DD3</key>
-		<array>
-			<dict>
-				<key>destinationuid</key>
-				<string>3B2897E7-E242-4504-A297-602265B0011F</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -651,11 +539,11 @@
 				<key>focusedappvariablename</key>
 				<string></string>
 				<key>hotkey</key>
-				<integer>0</integer>
+				<integer>122</integer>
 				<key>hotmod</key>
-				<integer>0</integer>
+				<integer>9437184</integer>
 				<key>hotstring</key>
-				<string></string>
+				<string>F1</string>
 				<key>leftcursor</key>
 				<false/>
 				<key>modsmode</key>
@@ -667,29 +555,6 @@
 			<string>alfred.workflow.trigger.hotkey</string>
 			<key>uid</key>
 			<string>6CDEB1A2-F0E3-4C17-955A-7AA171D8C899</string>
-			<key>version</key>
-			<integer>2</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>concurrently</key>
-				<false/>
-				<key>escaping</key>
-				<integer>68</integer>
-				<key>script</key>
-				<string>./main.swift switch_by_name output $1 "$outputs"</string>
-				<key>scriptargtype</key>
-				<integer>1</integer>
-				<key>scriptfile</key>
-				<string></string>
-				<key>type</key>
-				<integer>11</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.script</string>
-			<key>uid</key>
-			<string>3B2897E7-E242-4504-A297-602265B0011F</string>
 			<key>version</key>
 			<integer>2</integer>
 		</dict>
@@ -717,6 +582,29 @@
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>68</integer>
+				<key>script</key>
+				<string>./main.swift switch_by_name output $1 "$outputs"</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>11</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>3B2897E7-E242-4504-A297-602265B0011F</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>action</key>
 				<integer>0</integer>
 				<key>argument</key>
@@ -728,11 +616,11 @@
 				<key>focusedappvariablename</key>
 				<string></string>
 				<key>hotkey</key>
-				<integer>0</integer>
+				<integer>120</integer>
 				<key>hotmod</key>
-				<integer>0</integer>
+				<integer>9437184</integer>
 				<key>hotstring</key>
-				<string></string>
+				<string>F2</string>
 				<key>leftcursor</key>
 				<false/>
 				<key>modsmode</key>
@@ -743,7 +631,7 @@
 			<key>type</key>
 			<string>alfred.workflow.trigger.hotkey</string>
 			<key>uid</key>
-			<string>EF2D66EC-97C2-48FD-9A62-9004E2A09DD3</string>
+			<string>6EEBB03A-5A12-4883-BEF4-2DAC11BF0FC0</string>
 			<key>version</key>
 			<integer>2</integer>
 		</dict>
@@ -803,9 +691,11 @@
 				<key>focusedappvariablename</key>
 				<string></string>
 				<key>hotkey</key>
-				<integer>0</integer>
+				<integer>99</integer>
 				<key>hotmod</key>
-				<integer>0</integer>
+				<integer>9437184</integer>
+				<key>hotstring</key>
+				<string>F3</string>
 				<key>leftcursor</key>
 				<false/>
 				<key>modsmode</key>
@@ -817,114 +707,6 @@
 			<string>alfred.workflow.trigger.hotkey</string>
 			<key>uid</key>
 			<string>9D6F6749-4476-48A0-BF59-8B80656B1F51</string>
-			<key>version</key>
-			<integer>2</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>action</key>
-				<integer>0</integer>
-				<key>argument</key>
-				<integer>0</integer>
-				<key>focusedappvariable</key>
-				<false/>
-				<key>focusedappvariablename</key>
-				<string></string>
-				<key>hotkey</key>
-				<integer>0</integer>
-				<key>hotmod</key>
-				<integer>0</integer>
-				<key>hotstring</key>
-				<string></string>
-				<key>leftcursor</key>
-				<false/>
-				<key>modsmode</key>
-				<integer>0</integer>
-				<key>relatedAppsMode</key>
-				<integer>0</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.trigger.hotkey</string>
-			<key>uid</key>
-			<string>16B36DE1-595B-4D0B-9D16-65335E373CEE</string>
-			<key>version</key>
-			<integer>2</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>concurrently</key>
-				<false/>
-				<key>escaping</key>
-				<integer>102</integer>
-				<key>script</key>
-				<string>./main.swift rotate_favorites output "$outputs"</string>
-				<key>scriptargtype</key>
-				<integer>1</integer>
-				<key>scriptfile</key>
-				<string></string>
-				<key>type</key>
-				<integer>11</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.script</string>
-			<key>uid</key>
-			<string>03188D40-8A61-45DD-9D03-E374010B0995</string>
-			<key>version</key>
-			<integer>2</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>concurrently</key>
-				<false/>
-				<key>escaping</key>
-				<integer>102</integer>
-				<key>script</key>
-				<string>./main.swift rotate_favorites input "$outputs"</string>
-				<key>scriptargtype</key>
-				<integer>1</integer>
-				<key>scriptfile</key>
-				<string></string>
-				<key>type</key>
-				<integer>11</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.script</string>
-			<key>uid</key>
-			<string>0DC66D50-CC12-4D4D-B64B-8D73E610C9F5</string>
-			<key>version</key>
-			<integer>2</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>action</key>
-				<integer>0</integer>
-				<key>argument</key>
-				<integer>0</integer>
-				<key>focusedappvariable</key>
-				<false/>
-				<key>focusedappvariablename</key>
-				<string></string>
-				<key>hotkey</key>
-				<integer>0</integer>
-				<key>hotmod</key>
-				<integer>0</integer>
-				<key>hotstring</key>
-				<string></string>
-				<key>leftcursor</key>
-				<false/>
-				<key>modsmode</key>
-				<integer>0</integer>
-				<key>relatedAppsMode</key>
-				<integer>0</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.trigger.hotkey</string>
-			<key>uid</key>
-			<string>4761A9B3-DF5B-4E2F-8315-C6BC3D526C5E</string>
 			<key>version</key>
 			<integer>2</integer>
 		</dict>
@@ -963,9 +745,11 @@
 				<key>focusedappvariablename</key>
 				<string></string>
 				<key>hotkey</key>
-				<integer>0</integer>
+				<integer>122</integer>
 				<key>hotmod</key>
-				<integer>0</integer>
+				<integer>8912896</integer>
+				<key>hotstring</key>
+				<string>F1</string>
 				<key>leftcursor</key>
 				<false/>
 				<key>modsmode</key>
@@ -1004,37 +788,6 @@
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>action</key>
-				<integer>0</integer>
-				<key>argument</key>
-				<integer>3</integer>
-				<key>argumenttext</key>
-				<string>1</string>
-				<key>focusedappvariable</key>
-				<false/>
-				<key>focusedappvariablename</key>
-				<string></string>
-				<key>hotkey</key>
-				<integer>0</integer>
-				<key>hotmod</key>
-				<integer>0</integer>
-				<key>leftcursor</key>
-				<false/>
-				<key>modsmode</key>
-				<integer>0</integer>
-				<key>relatedAppsMode</key>
-				<integer>0</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.trigger.hotkey</string>
-			<key>uid</key>
-			<string>82D538CB-521F-4F59-99A5-91AFC57E3CF3</string>
-			<key>version</key>
-			<integer>2</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
 				<key>concurrently</key>
 				<false/>
 				<key>escaping</key>
@@ -1052,6 +805,39 @@
 			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
 			<string>F6A49F45-6CB5-4CDF-BB3E-79B7715ACA0F</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>action</key>
+				<integer>0</integer>
+				<key>argument</key>
+				<integer>3</integer>
+				<key>argumenttext</key>
+				<string>1</string>
+				<key>focusedappvariable</key>
+				<false/>
+				<key>focusedappvariablename</key>
+				<string></string>
+				<key>hotkey</key>
+				<integer>120</integer>
+				<key>hotmod</key>
+				<integer>8912896</integer>
+				<key>hotstring</key>
+				<string>F2</string>
+				<key>leftcursor</key>
+				<false/>
+				<key>modsmode</key>
+				<integer>0</integer>
+				<key>relatedAppsMode</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.trigger.hotkey</string>
+			<key>uid</key>
+			<string>82D538CB-521F-4F59-99A5-91AFC57E3CF3</string>
 			<key>version</key>
 			<integer>2</integer>
 		</dict>
@@ -1090,9 +876,11 @@
 				<key>focusedappvariablename</key>
 				<string></string>
 				<key>hotkey</key>
-				<integer>0</integer>
+				<integer>99</integer>
 				<key>hotmod</key>
-				<integer>0</integer>
+				<integer>8912896</integer>
+				<key>hotstring</key>
+				<string>F3</string>
 				<key>leftcursor</key>
 				<false/>
 				<key>modsmode</key>
@@ -1251,34 +1039,16 @@ means the following:
 		<key>00704246-FE25-4B27-86E9-2EB6EDF00D67</key>
 		<dict>
 			<key>xpos</key>
-			<real>655</real>
+			<real>675</real>
 			<key>ypos</key>
-			<real>1360</real>
-		</dict>
-		<key>03188D40-8A61-45DD-9D03-E374010B0995</key>
-		<dict>
-			<key>note</key>
-			<string>rotateOutput</string>
-			<key>xpos</key>
-			<real>615</real>
-			<key>ypos</key>
-			<real>685</real>
+			<real>1070</real>
 		</dict>
 		<key>09EBB07A-0EF4-4CDB-96E1-7A4EDC0561F4</key>
 		<dict>
 			<key>xpos</key>
-			<real>920</real>
+			<real>940</real>
 			<key>ypos</key>
-			<real>1360</real>
-		</dict>
-		<key>0DC66D50-CC12-4D4D-B64B-8D73E610C9F5</key>
-		<dict>
-			<key>note</key>
-			<string>rotateInput</string>
-			<key>xpos</key>
-			<real>615</real>
-			<key>ypos</key>
-			<real>825</real>
+			<real>1070</real>
 		</dict>
 		<key>1450496C-74BC-4EDE-930B-ADC6027C5449</key>
 		<dict>
@@ -1286,15 +1056,6 @@ means the following:
 			<real>405</real>
 			<key>ypos</key>
 			<real>180</real>
-		</dict>
-		<key>16B36DE1-595B-4D0B-9D16-65335E373CEE</key>
-		<dict>
-			<key>note</key>
-			<string>Rotate Output</string>
-			<key>xpos</key>
-			<real>195</real>
-			<key>ypos</key>
-			<real>685</real>
 		</dict>
 		<key>39B059B1-CD01-4C2D-8907-1E2F9262CD04</key>
 		<dict>
@@ -1317,32 +1078,30 @@ means the following:
 			<key>note</key>
 			<string>setOutput</string>
 			<key>xpos</key>
-			<real>615</real>
+			<real>610</real>
 			<key>ypos</key>
-			<real>350</real>
-		</dict>
-		<key>4761A9B3-DF5B-4E2F-8315-C6BC3D526C5E</key>
-		<dict>
-			<key>note</key>
-			<string>Rotate Input</string>
-			<key>xpos</key>
-			<real>195</real>
-			<key>ypos</key>
-			<real>825</real>
+			<real>435</real>
 		</dict>
 		<key>6CDEB1A2-F0E3-4C17-955A-7AA171D8C899</key>
 		<dict>
 			<key>xpos</key>
-			<real>200</real>
+			<real>210</real>
 			<key>ypos</key>
-			<real>325</real>
+			<real>330</real>
+		</dict>
+		<key>6EEBB03A-5A12-4883-BEF4-2DAC11BF0FC0</key>
+		<dict>
+			<key>xpos</key>
+			<real>205</real>
+			<key>ypos</key>
+			<real>440</real>
 		</dict>
 		<key>7155F88D-55F6-4608-BC2E-554BA0780537</key>
 		<dict>
 			<key>xpos</key>
-			<real>375</real>
+			<real>395</real>
 			<key>ypos</key>
-			<real>980</real>
+			<real>690</real>
 		</dict>
 		<key>71AAE21C-028C-45CE-AB44-1378572652A9</key>
 		<dict>
@@ -1354,21 +1113,21 @@ means the following:
 		<key>7A1840A7-3844-4206-9B9E-B0602C41361E</key>
 		<dict>
 			<key>xpos</key>
-			<real>180</real>
+			<real>200</real>
 			<key>ypos</key>
-			<real>980</real>
+			<real>690</real>
 		</dict>
 		<key>82D538CB-521F-4F59-99A5-91AFC57E3CF3</key>
 		<dict>
 			<key>xpos</key>
-			<real>180</real>
+			<real>200</real>
 			<key>ypos</key>
-			<real>1090</real>
+			<real>800</real>
 		</dict>
 		<key>864A20DF-C5E2-444E-B084-9CD126BED7DF</key>
 		<dict>
 			<key>xpos</key>
-			<real>380</real>
+			<real>405</real>
 			<key>ypos</key>
 			<real>430</real>
 		</dict>
@@ -1382,30 +1141,30 @@ means the following:
 		<key>9F22BA12-18B5-4FA5-B429-12DB07DBDC90</key>
 		<dict>
 			<key>xpos</key>
-			<real>160</real>
+			<real>180</real>
 			<key>ypos</key>
-			<real>1360</real>
+			<real>1070</real>
 		</dict>
 		<key>A0CE40D8-D874-48D7-903B-0C91A6B2F7DC</key>
 		<dict>
 			<key>xpos</key>
-			<real>380</real>
+			<real>405</real>
 			<key>ypos</key>
-			<real>540</real>
+			<real>535</real>
 		</dict>
 		<key>A3266036-2FB4-4E74-B315-F9951154B58F</key>
 		<dict>
 			<key>xpos</key>
-			<real>180</real>
+			<real>200</real>
 			<key>ypos</key>
-			<real>1200</real>
+			<real>910</real>
 		</dict>
 		<key>AD6FA975-C31E-4D56-BF48-EBBC634EB89E</key>
 		<dict>
 			<key>xpos</key>
-			<real>380</real>
+			<real>405</real>
 			<key>ypos</key>
-			<real>320</real>
+			<real>325</real>
 		</dict>
 		<key>AFF1A33C-2AE0-4CA1-8B00-04BB87A5F7FE</key>
 		<dict>
@@ -1424,41 +1183,34 @@ means the following:
 		<key>C0967D8A-BEF8-44B5-BF2A-06BD127C8D73</key>
 		<dict>
 			<key>xpos</key>
-			<real>375</real>
+			<real>395</real>
 			<key>ypos</key>
-			<real>1085</real>
+			<real>795</real>
 		</dict>
 		<key>C46B89C0-5C32-4E45-84C4-714DAA27F2BD</key>
 		<dict>
 			<key>note</key>
 			<string>fetchaudiodevices</string>
 			<key>xpos</key>
-			<real>405</real>
+			<real>425</real>
 			<key>ypos</key>
-			<real>1360</real>
+			<real>1070</real>
 		</dict>
 		<key>CBBA9D5E-DB01-490E-9C0F-F33A07F09E3A</key>
 		<dict>
 			<key>xpos</key>
-			<real>375</real>
+			<real>395</real>
 			<key>ypos</key>
-			<real>1190</real>
-		</dict>
-		<key>EF2D66EC-97C2-48FD-9A62-9004E2A09DD3</key>
-		<dict>
-			<key>xpos</key>
-			<real>205</real>
-			<key>ypos</key>
-			<real>440</real>
+			<real>900</real>
 		</dict>
 		<key>F6A49F45-6CB5-4CDF-BB3E-79B7715ACA0F</key>
 		<dict>
 			<key>note</key>
 			<string>setInput</string>
 			<key>xpos</key>
-			<real>605</real>
+			<real>590</real>
 			<key>ypos</key>
-			<real>1135</real>
+			<real>795</real>
 		</dict>
 		<key>FCE19CD4-E3AE-4361-8B59-F357914A629C</key>
 		<dict>
@@ -1578,8 +1330,6 @@ means the following:
 			<string>inputs</string>
 		</dict>
 	</array>
-	<key>variablesdontexport</key>
-	<array/>
 	<key>version</key>
 	<string>1.1.1</string>
 	<key>webaddress</key>

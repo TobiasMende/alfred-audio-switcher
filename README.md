@@ -5,7 +5,6 @@ This is a workflow for [Alfred](https://alfred.app/).
 This workflow supports quickly switching sound input and output devices.
 
 It offers hotkeys to quickly switch between three input favorites and output favorites. Those can also be triggered using Alfred Remote.
-You can also use a hotkey to rotate among the favorites.
 
 ### Listing Devices
 Once installed, use the `fetchaudiodevices` command in Alfred. Once you have selected either "Outputs" or "Inputs",
@@ -45,4 +44,3 @@ means the following:
 - *⌥ + F1* will select MacBook Pro Microphone.
 - *⌥ + F2* will select RØDE Connect Stream.
 - *⌥ + F3* will have no effect.
-
