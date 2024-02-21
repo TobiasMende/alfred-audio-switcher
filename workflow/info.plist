@@ -1016,11 +1016,11 @@
 				<key>focusedappvariablename</key>
 				<string></string>
 				<key>hotkey</key>
-				<integer>105</integer>
+				<integer>111</integer>
 				<key>hotmod</key>
-				<integer>8388608</integer>
+				<integer>9437184</integer>
 				<key>hotstring</key>
-				<string>F13</string>
+				<string>F12</string>
 				<key>leftcursor</key>
 				<false/>
 				<key>modsmode</key>
@@ -1091,11 +1091,11 @@
 				<key>focusedappvariablename</key>
 				<string></string>
 				<key>hotkey</key>
-				<integer>105</integer>
+				<integer>111</integer>
 				<key>hotmod</key>
 				<integer>8912896</integer>
 				<key>hotstring</key>
-				<string>F13</string>
+				<string>F12</string>
 				<key>leftcursor</key>
 				<false/>
 				<key>modsmode</key>
@@ -1240,6 +1240,7 @@ means the following:
 - *⌘ + F1* will select MacBook Pro Speakers.
 - *⌘ + F2* will select RØDE Connect Virtual.
 - *⌘ + F3* will select External Screen.
+- *⌘ + F12* will rotate among these three outputs.
 
 ### Input Favorites
 The value
@@ -1250,7 +1251,8 @@ RØDE Connect Stream
 means the following:
 - *⌥ + F1* will select MacBook Pro Microphone.
 - *⌥ + F2* will select RØDE Connect Stream.
-- *⌥ + F3* will have no effect.</string>
+- *⌥ + F3* will have no effect.
+- *⌥ + F12* will rotate among these two outputs.</string>
 	<key>uidata</key>
 	<dict>
 		<key>00704246-FE25-4B27-86E9-2EB6EDF00D67</key>
@@ -1594,7 +1596,7 @@ means the following:
 		</dict>
 	</array>
 	<key>version</key>
-	<string>1.1.1</string>
+	<string>1.2</string>
 	<key>webaddress</key>
 	<string>https://github.com/TobiasMende/alfred-audio-switcher</string>
 </dict>
