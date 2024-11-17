@@ -447,7 +447,7 @@
 				<key>runningsubtext</key>
 				<string>Please Wait</string>
 				<key>script</key>
-				<string>./main.swift list output "$ignorelist"</string>
+				<string>./main.swift list output "$ignorelist" "$outputs"</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
 				<key>scriptfile</key>
@@ -538,7 +538,7 @@
 				<key>runningsubtext</key>
 				<string>Please Wait</string>
 				<key>script</key>
-				<string>./main.swift list input "$ignorelist"</string>
+				<string>./main.swift list input "$ignorelist" "$inputs"</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
 				<key>scriptfile</key>
@@ -1265,7 +1265,18 @@ means the following:
 - *⌥ + F1* will select MacBook Pro Microphone.
 - *⌥ + F2* will select RØDE Connect Stream.
 - *⌥ + F3* will have no effect.
-- *⌥ + F12* will rotate among these two outputs.</string>
+- *⌥ + F12* will rotate among these two outputs.
+
+## Friendly Names
+You might want to specify friendly names for your inputs and outputs. For this you can use the favorite lists and add a freindly name separated by a semicolon (`;`). Example:
+```
+MacBook Pro Speakers;Mac
+RØDE Connect Virtual;RØDE
+External Screen
+```
+
+For entries without a friendly name, the official name will be used.
+Friendly names are used in the `in` and `out` lists in this workflow.</string>
 	<key>uidata</key>
 	<dict>
 		<key>00704246-FE25-4B27-86E9-2EB6EDF00D67</key>
@@ -1361,9 +1372,9 @@ means the following:
 		<key>7155F88D-55F6-4608-BC2E-554BA0780537</key>
 		<dict>
 			<key>xpos</key>
-			<real>395</real>
+			<real>390</real>
 			<key>ypos</key>
-			<real>690</real>
+			<real>675</real>
 		</dict>
 		<key>71AAE21C-028C-45CE-AB44-1378572652A9</key>
 		<dict>
@@ -1609,7 +1620,7 @@ means the following:
 		</dict>
 	</array>
 	<key>version</key>
-	<string>1.2.0</string>
+	<string>1.3.0</string>
 	<key>webaddress</key>
 	<string>https://github.com/TobiasMende/alfred-audio-switcher</string>
 </dict>
