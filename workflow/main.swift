@@ -12,7 +12,7 @@ let command = arguments[1]
 let type = arguments[2] == "input" ? DeviceType.input : DeviceType.output
 
 if command == "list" {
-    printDeviceItems(type: type, ignoreListAsMultilineString: arguments.count > 3 ? arguments[3] : "")
+    printDeviceItems(type: type, ignoreListAsMultilineString: arguments.count > 3 ? arguments[3] : "", favoritesAsMultilineString: arguments.count > 4 ? arguments[4] : "")
 } else if command == "switch_by_id" && arguments.count > 3 {
     switchDeviceById(type: type, deviceIDAsString: arguments[3])
 } else if command == "print_device_names" {
@@ -157,9 +157,9 @@ func convertStringToDeviceID(deviceIDString: String) -> AudioDeviceID? {
 }
 
 
-func deviceToJson(device: (name: String, id: AudioDeviceID), isDefault: Bool, type: DeviceType) -> String {
+func deviceToJson(device: (name: String, id: AudioDeviceID), friendlyName: String, isDefault: Bool, type: DeviceType) -> String {
     let iconName = isDefault ? "\(type)_selected.png" : "\(type).png"
-    return "{\"title\": \"\(device.name)\", \"uid\": \"\(device.name)\", \"autocomplete\": \"\(device.name)\", \"arg\": \"\(device.id)\", \"icon\": {\"path\": \"./icons/\(iconName)\"}}"
+    return "{\"title\": \"\(friendlyName)\", \"uid\": \"\(device.name)\", \"autocomplete\": \"\(friendlyName)\", \"arg\": \"\(device.id)\", \"icon\": {\"path\": \"./icons/\(iconName)\"}}"
 }
 
 func filterAudioDevices(devices: [(name: String, id: AudioDeviceID)], ignoreList: [String]) -> [(name: String, id: AudioDeviceID)] {
@@ -172,13 +172,38 @@ func printDeviceNames(type: DeviceType) {
     }
 }
 
-func printDeviceItems(type: DeviceType, ignoreListAsMultilineString: String) {
+func convertFavoritesList(favoritesAsMultilineString: String) -> [String: String] {
+    let favoriteList = convertMultilineArgumentToList(argument: favoritesAsMultilineString)
+
+    var resultMap: [String: String] = [:]
+
+    for favoriteLine in favoriteList {
+        let components = favoriteLine.split(separator: ";", maxSplits: 1, omittingEmptySubsequences: true)
+        
+        if components.count == 2 {
+            // If there are two components, we have both key and value
+            let key = String(components[0]).trimmingCharacters(in: .whitespaces)
+            let value = String(components[1]).trimmingCharacters(in: .whitespaces)
+            resultMap[key] = value
+        } else if components.count == 1 {
+            // If there's no semicolon, we can still add the key with an empty value
+            let key = String(components[0]).trimmingCharacters(in: .whitespaces)
+            resultMap[key] = key
+        }
+    }
+
+    return resultMap
+}
+
+func printDeviceItems(type: DeviceType, ignoreListAsMultilineString: String, favoritesAsMultilineString: String) {
     let ignoreList = convertMultilineArgumentToList(argument: ignoreListAsMultilineString)
+    let favoriteList = convertFavoritesList(favoritesAsMultilineString: favoritesAsMultilineString)
     let defaultDevice = getDefaultAudioDevice(type: type)
     let devices = getAudioDeviceList(type: type)
     let devicesAsJson = filterAudioDevices(devices: devices, ignoreList: ignoreList).map { device in
         let isDefault = (defaultDevice.id == device.id)
-        return deviceToJson(device: device, isDefault: isDefault, type: type)
+        let friendlyName = favoriteList[device.name] ?? device.name
+        return deviceToJson(device: device, friendlyName: friendlyName, isDefault: isDefault, type: type)
     }.joined(separator: ",")
 
     print("{\"items\": [\(devicesAsJson)]}")
@@ -206,9 +231,11 @@ func switchDeviceByDeviceIndexAndList(type: DeviceType, deviceIndexAsString: Str
         fatalError("Invalid Index Passed")
     }
 
-    let deviceFromList = deviceList[deviceIndex]
+    guard let deviceFromList = deviceList[deviceIndex].split(separator: ";").first else {
+        fatalError("Invalid Device Index: \(deviceIndex)")
+    }
 
-    guard let deviceID = getAudioDeviceIdByName(deviceName: deviceFromList, type: type) else {
+    guard let deviceID = getAudioDeviceIdByName(deviceName: String(deviceFromList), type: type) else {
         fatalError("Device not found: Index: \(deviceIndex), deviceList: \(deviceList)")
     }
 
@@ -232,8 +259,11 @@ func rotateFavorites(type: DeviceType, deviceListAsMultilineString: String) {
 
     let defaultDeviceIndex = deviceList.firstIndex(of: defaultDevice.name) ?? -1
     let nextDeviceIndex = (defaultDeviceIndex + 1) % deviceList.count
-    guard let nextDeviceID = getAudioDeviceIdByName(deviceName: deviceList[nextDeviceIndex], type: type) else {
-        fatalError("Device not found: \(deviceList[nextDeviceIndex])")
+    guard let nextDeviceName = deviceList[nextDeviceIndex].split(separator: ";").first else {
+        fatalError("Device not found at index: \(nextDeviceIndex)")
+    }
+    guard let nextDeviceID = getAudioDeviceIdByName(deviceName: String(nextDeviceName), type: type) else {
+        fatalError("Device not found: \(nextDeviceName)")
     }
 
     guard let selectedDevice = setDefaultAudioDevice(type: type, deviceID: nextDeviceID) else {
