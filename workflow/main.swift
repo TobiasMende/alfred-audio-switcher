@@ -12,15 +12,15 @@ let command = arguments[1]
 let type = arguments[2] == "input" ? DeviceType.input : DeviceType.output
 
 if command == "list" {
-    printDeviceItems(type: type, ignoreListAsMultilineString: arguments.count > 3 ? arguments[3] : "", favoritesAsMultilineString: arguments.count > 4 ? arguments[4] : "")
+    printDeviceItems(type: type)
 } else if command == "switch_by_id" && arguments.count > 3 {
     switchDeviceById(type: type, deviceIDAsString: arguments[3])
 } else if command == "print_device_names" {
     printDeviceNames(type: type)
-} else if command == "switch_by_name" && arguments.count > 4 {
-    switchDeviceByDeviceIndexAndList(type: type, deviceIndexAsString: arguments[3], deviceListAsMultilineString: arguments[4])
-} else if command == "rotate_favorites" && arguments.count > 3 {
-    rotateFavorites(type: type, deviceListAsMultilineString: arguments[3])
+} else if command == "switch_by_name" && arguments.count > 3 {
+    switchDeviceByDeviceIndexAndList(type: type, deviceIndexAsString: arguments[3])
+} else if command == "rotate_favorites" && arguments.count > 2 {
+    rotateFavorites(type: type)
 }else {
     printUsageAndExit()
 }
@@ -72,7 +72,25 @@ func setDefaultAudioDevice(type: DeviceType, deviceID: AudioDeviceID) -> String?
         fatalError("Error: Unable to set default \(type) device")
     }
 
+    if(type == .output) {
+        let syncSoundEffectsOutput = getEnvironmentVariable(named: "sync_sound_effects_output") == "1" ? true : false
+        if(syncSoundEffectsOutput) {
+            setSoundEffectsOutput(to: deviceID)
+        }
+    }
+
     return getAudioDeviceNameById(deviceID: deviceID)
+}
+
+func setSoundEffectsOutput(to deviceID: AudioDeviceID) {
+    var propertyAddress = createPropertyAddress(selector: kAudioHardwarePropertyDefaultSystemOutputDevice)
+    var newDeviceID = deviceID
+    let propertySize = UInt32(MemoryLayout<AudioDeviceID>.size)
+
+    let status = AudioObjectSetPropertyData(AudioObjectID(kAudioObjectSystemObject), &propertyAddress, 0, nil, propertySize, &newDeviceID)
+    if status != noErr {
+        fatalError("Error: Unable to set default \(type) device")
+    }
 }
 
 func getDeviceName(deviceID: AudioDeviceID) -> String? {
@@ -195,8 +213,9 @@ func convertFavoritesList(favoritesAsMultilineString: String) -> [String: String
     return resultMap
 }
 
-func printDeviceItems(type: DeviceType, ignoreListAsMultilineString: String, favoritesAsMultilineString: String) {
-    let ignoreList = convertMultilineArgumentToList(argument: ignoreListAsMultilineString)
+func printDeviceItems(type: DeviceType) {
+    let favoritesAsMultilineString = getAppropriateDeviceList(type: type)
+    let ignoreList = convertMultilineArgumentToList(argument: getEnvironmentVariable(named: "ignorelist"))
     let favoriteList = convertFavoritesList(favoritesAsMultilineString: favoritesAsMultilineString)
     let defaultDevice = getDefaultAudioDevice(type: type)
     let devices = getAudioDeviceList(type: type)
@@ -207,6 +226,10 @@ func printDeviceItems(type: DeviceType, ignoreListAsMultilineString: String, fav
     }.joined(separator: ",")
 
     print("{\"items\": [\(devicesAsJson)]}")
+}
+
+func getAppropriateDeviceList(type: DeviceType) -> String {
+    return getEnvironmentVariable(named: (type == .output ? "outputs" : "inputs"))
 }
 
 func switchDeviceById(type: DeviceType, deviceIDAsString: String) {
@@ -220,12 +243,16 @@ func switchDeviceById(type: DeviceType, deviceIDAsString: String) {
     print(selectedDevice)
 }
 
-func switchDeviceByDeviceIndexAndList(type: DeviceType, deviceIndexAsString: String, deviceListAsMultilineString: String) {
+func getEnvironmentVariable(named name: String) -> String {
+    return ProcessInfo.processInfo.environment[name] ?? ""
+}
+
+func switchDeviceByDeviceIndexAndList(type: DeviceType, deviceIndexAsString: String) {
     guard let deviceIndex = Int(deviceIndexAsString) else {
         fatalError("Invalid Device Index: \(deviceIndexAsString)")
     }
 
-    let deviceList = convertMultilineArgumentToList(argument: deviceListAsMultilineString)
+    let deviceList = convertMultilineArgumentToList(argument: getAppropriateDeviceList(type: type))
 
     guard deviceIndex < deviceList.count else {
         fatalError("Invalid Index Passed")
@@ -250,9 +277,9 @@ func convertMultilineArgumentToList(argument: String) -> [String] {
     return argument.split(separator: "\n").map(String.init)
 }
 
-func rotateFavorites(type: DeviceType, deviceListAsMultilineString: String) {
+func rotateFavorites(type: DeviceType) {
     let defaultDevice = getDefaultAudioDevice(type: type)
-    let deviceList = convertMultilineArgumentToList(argument: deviceListAsMultilineString)
+    let deviceList = convertMultilineArgumentToList(argument: getAppropriateDeviceList(type: type)).map { String($0.split(separator: ";").first!) }
     guard deviceList.count > 0 else {
         fatalError("No devices in list")
     }
