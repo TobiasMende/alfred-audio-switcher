@@ -285,21 +285,23 @@ func rotateFavorites(type: DeviceType) {
     }
 
     let defaultDeviceIndex = deviceList.firstIndex(of: defaultDevice.name) ?? -1
-    let nextDeviceIndex = (defaultDeviceIndex + 1) % deviceList.count
-    guard let nextDeviceName = deviceList[nextDeviceIndex].split(separator: ";").first else {
-        fatalError("Device not found at index: \(nextDeviceIndex)")
-    }
-    guard let nextDeviceID = getAudioDeviceIdByName(deviceName: String(nextDeviceName), type: type) else {
-        fatalError("Device not found: \(nextDeviceName)")
+    var nextDeviceIndex = (defaultDeviceIndex + 1) % deviceList.count
+
+    for _ in 0..<deviceList.count {
+        let nextDeviceName = deviceList[nextDeviceIndex]
+        
+        if let nextDeviceID = getAudioDeviceIdByName(deviceName: nextDeviceName, type: type),
+           let selectedDevice = setDefaultAudioDevice(type: type, deviceID: nextDeviceID) {
+            print(selectedDevice)
+            return
+        }
+
+        nextDeviceIndex = (nextDeviceIndex + 1) % deviceList.count
     }
 
-    guard let selectedDevice = setDefaultAudioDevice(type: type, deviceID: nextDeviceID) else {
-        fatalError("Device Not Found: \(nextDeviceID)")
-    }
+    fatalError("No available devices found.")
 
-    print(selectedDevice)
 }
-
 
 func printUsageAndExit() {
     print("Usage: ./main.swift <command> <type> [<ignoreList>|<deviceIndex> <deviceList>]")

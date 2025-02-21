@@ -8,6 +8,31 @@
 	<string>Tools</string>
 	<key>connections</key>
 	<dict>
+		<key>0042D9F6-6ABD-4357-87C6-4D38F305965E</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>78565025-BF49-4BE9-984F-F940D3A6F150</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>sourceoutputuid</key>
+				<string>FE261BE2-CC79-4235-A450-E6C797F26650</string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>4FA7BE8D-945B-4AEF-A300-9B453E7DC5DE</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
 		<key>00704246-FE25-4B27-86E9-2EB6EDF00D67</key>
 		<array>
 			<dict>
@@ -25,7 +50,7 @@
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>39B059B1-CD01-4C2D-8907-1E2F9262CD04</string>
+				<string>434767F1-9535-4623-BC77-D75F29A8AA34</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -64,7 +89,7 @@
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>39B059B1-CD01-4C2D-8907-1E2F9262CD04</string>
+				<string>0042D9F6-6ABD-4357-87C6-4D38F305965E</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -74,6 +99,44 @@
 			</dict>
 		</array>
 		<key>3B2897E7-E242-4504-A297-602265B0011F</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>0042D9F6-6ABD-4357-87C6-4D38F305965E</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>434767F1-9535-4623-BC77-D75F29A8AA34</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>78565025-BF49-4BE9-984F-F940D3A6F150</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>sourceoutputuid</key>
+				<string>FE261BE2-CC79-4235-A450-E6C797F26650</string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>FF90D86F-BE3D-4B34-907C-4C005BD7458E</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>4FA7BE8D-945B-4AEF-A300-9B453E7DC5DE</key>
 		<array>
 			<dict>
 				<key>destinationuid</key>
@@ -311,7 +374,7 @@
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>39B059B1-CD01-4C2D-8907-1E2F9262CD04</string>
+				<string>0042D9F6-6ABD-4357-87C6-4D38F305965E</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -363,7 +426,7 @@
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>39B059B1-CD01-4C2D-8907-1E2F9262CD04</string>
+				<string>434767F1-9535-4623-BC77-D75F29A8AA34</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -373,6 +436,19 @@
 			</dict>
 		</array>
 		<key>FCE19CD4-E3AE-4361-8B59-F357914A629C</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>434767F1-9535-4623-BC77-D75F29A8AA34</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>FF90D86F-BE3D-4B34-907C-4C005BD7458E</key>
 		<array>
 			<dict>
 				<key>destinationuid</key>
@@ -396,29 +472,6 @@
 	<string>Audio Switcher</string>
 	<key>objects</key>
 	<array>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>concurrently</key>
-				<false/>
-				<key>escaping</key>
-				<integer>102</integer>
-				<key>script</key>
-				<string>./main.swift switch_by_id output $1</string>
-				<key>scriptargtype</key>
-				<integer>1</integer>
-				<key>scriptfile</key>
-				<string></string>
-				<key>type</key>
-				<integer>11</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.script</string>
-			<key>uid</key>
-			<string>3AE8EB58-5F7D-49B6-98C1-4BAE5E79FC2E</string>
-			<key>version</key>
-			<integer>2</integer>
-		</dict>
 		<dict>
 			<key>config</key>
 			<dict>
@@ -447,7 +500,7 @@
 				<key>runningsubtext</key>
 				<string>Please Wait</string>
 				<key>script</key>
-				<string>./main.swift list output "$ignorelist" "$outputs"</string>
+				<string>./main.swift list output</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
 				<key>scriptfile</key>
@@ -471,6 +524,29 @@
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>./main.swift switch_by_id output $1</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>11</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>3AE8EB58-5F7D-49B6-98C1-4BAE5E79FC2E</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>argument</key>
 				<string></string>
 				<key>argumenttype</key>
@@ -486,27 +562,6 @@
 			<string>alfred.workflow.trigger.remote</string>
 			<key>uid</key>
 			<string>AFF1A33C-2AE0-4CA1-8B00-04BB87A5F7FE</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>argument</key>
-				<string></string>
-				<key>argumenttype</key>
-				<integer>0</integer>
-				<key>triggerid</key>
-				<string>io.mende.audioswitcher.in</string>
-				<key>triggername</key>
-				<string>Select Input</string>
-				<key>workflowonly</key>
-				<false/>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.trigger.remote</string>
-			<key>uid</key>
-			<string>71AAE21C-028C-45CE-AB44-1378572652A9</string>
 			<key>version</key>
 			<integer>1</integer>
 		</dict>
@@ -538,7 +593,7 @@
 				<key>runningsubtext</key>
 				<string>Please Wait</string>
 				<key>script</key>
-				<string>./main.swift list input "$ignorelist" "$inputs"</string>
+				<string>./main.swift list input</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
 				<key>scriptfile</key>
@@ -562,6 +617,27 @@
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>argument</key>
+				<string></string>
+				<key>argumenttype</key>
+				<integer>0</integer>
+				<key>triggerid</key>
+				<string>io.mende.audioswitcher.in</string>
+				<key>triggername</key>
+				<string>Select Input</string>
+				<key>workflowonly</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.trigger.remote</string>
+			<key>uid</key>
+			<string>71AAE21C-028C-45CE-AB44-1378572652A9</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>concurrently</key>
 				<false/>
 				<key>escaping</key>
@@ -581,6 +657,27 @@
 			<string>FCE19CD4-E3AE-4361-8B59-F357914A629C</string>
 			<key>version</key>
 			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>lastpathcomponent</key>
+				<false/>
+				<key>onlyshowifquerypopulated</key>
+				<false/>
+				<key>removeextension</key>
+				<false/>
+				<key>text</key>
+				<string>Please have a look into the workflows debug console for further information.</string>
+				<key>title</key>
+				<string>Workflow failed</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.notification</string>
+			<key>uid</key>
+			<string>78565025-BF49-4BE9-984F-F940D3A6F150</string>
+			<key>version</key>
+			<integer>1</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -665,7 +762,7 @@
 				<key>escaping</key>
 				<integer>68</integer>
 				<key>script</key>
-				<string>./main.swift switch_by_name output $1 "$outputs"</string>
+				<string>./main.swift switch_by_name output $1</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
 				<key>scriptfile</key>
@@ -716,6 +813,38 @@
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>conditions</key>
+				<array>
+					<dict>
+						<key>inputstring</key>
+						<string>{query}</string>
+						<key>matchcasesensitive</key>
+						<false/>
+						<key>matchmode</key>
+						<integer>0</integer>
+						<key>matchstring</key>
+						<string></string>
+						<key>outputlabel</key>
+						<string>error</string>
+						<key>uid</key>
+						<string>FE261BE2-CC79-4235-A450-E6C797F26650</string>
+					</dict>
+				</array>
+				<key>elselabel</key>
+				<string>else</string>
+				<key>hideelse</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.utility.conditional</string>
+			<key>uid</key>
+			<string>0042D9F6-6ABD-4357-87C6-4D38F305965E</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>argument</key>
 				<string>2</string>
 				<key>argumenttype</key>
@@ -744,9 +873,9 @@
 				<key>removeextension</key>
 				<false/>
 				<key>text</key>
-				<string></string>
+				<string>{var:device}</string>
 				<key>title</key>
-				<string>Switched to {query}</string>
+				<string>Audio {var:type} switched</string>
 			</dict>
 			<key>type</key>
 			<string>alfred.workflow.output.notification</string>
@@ -787,6 +916,82 @@
 			<string>9D6F6749-4476-48A0-BF59-8B80656B1F51</string>
 			<key>version</key>
 			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argument</key>
+				<string></string>
+				<key>passthroughargument</key>
+				<false/>
+				<key>variables</key>
+				<dict>
+					<key>device</key>
+					<string>{query}</string>
+					<key>type</key>
+					<string>output</string>
+				</dict>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.utility.argument</string>
+			<key>uid</key>
+			<string>4FA7BE8D-945B-4AEF-A300-9B453E7DC5DE</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>conditions</key>
+				<array>
+					<dict>
+						<key>inputstring</key>
+						<string>{query}</string>
+						<key>matchcasesensitive</key>
+						<false/>
+						<key>matchmode</key>
+						<integer>0</integer>
+						<key>matchstring</key>
+						<string></string>
+						<key>outputlabel</key>
+						<string>error</string>
+						<key>uid</key>
+						<string>FE261BE2-CC79-4235-A450-E6C797F26650</string>
+					</dict>
+				</array>
+				<key>elselabel</key>
+				<string>else</string>
+				<key>hideelse</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.utility.conditional</string>
+			<key>uid</key>
+			<string>434767F1-9535-4623-BC77-D75F29A8AA34</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argument</key>
+				<string></string>
+				<key>passthroughargument</key>
+				<false/>
+				<key>variables</key>
+				<dict>
+					<key>device</key>
+					<string>{query}</string>
+					<key>type</key>
+					<string>input</string>
+				</dict>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.utility.argument</string>
+			<key>uid</key>
+			<string>FF90D86F-BE3D-4B34-907C-4C005BD7458E</string>
+			<key>version</key>
+			<integer>1</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -845,6 +1050,29 @@
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>68</integer>
+				<key>script</key>
+				<string>./main.swift switch_by_name input $1</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>11</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>F6A49F45-6CB5-4CDF-BB3E-79B7715ACA0F</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>argument</key>
 				<string>1</string>
 				<key>argumenttype</key>
@@ -862,29 +1090,6 @@
 			<string>C0967D8A-BEF8-44B5-BF2A-06BD127C8D73</string>
 			<key>version</key>
 			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>concurrently</key>
-				<false/>
-				<key>escaping</key>
-				<integer>68</integer>
-				<key>script</key>
-				<string>./main.swift switch_by_name input $1 "$inputs"</string>
-				<key>scriptargtype</key>
-				<integer>1</integer>
-				<key>scriptfile</key>
-				<string></string>
-				<key>type</key>
-				<integer>11</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.script</string>
-			<key>uid</key>
-			<string>F6A49F45-6CB5-4CDF-BB3E-79B7715ACA0F</string>
-			<key>version</key>
-			<integer>2</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -997,29 +1202,6 @@
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>concurrently</key>
-				<false/>
-				<key>escaping</key>
-				<integer>68</integer>
-				<key>script</key>
-				<string>./main.swift rotate_favorites output "$outputs"</string>
-				<key>scriptargtype</key>
-				<integer>1</integer>
-				<key>scriptfile</key>
-				<string></string>
-				<key>type</key>
-				<integer>11</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.script</string>
-			<key>uid</key>
-			<string>BA2ED978-7611-4D11-9EA1-8A0A1E275FD0</string>
-			<key>version</key>
-			<integer>2</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
 				<key>action</key>
 				<integer>0</integer>
 				<key>argument</key>
@@ -1045,6 +1227,29 @@
 			<string>alfred.workflow.trigger.hotkey</string>
 			<key>uid</key>
 			<string>1AF283DE-8EDC-4006-AD54-91F4C226E5C9</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>68</integer>
+				<key>script</key>
+				<string>./main.swift rotate_favorites output</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>11</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>BA2ED978-7611-4D11-9EA1-8A0A1E275FD0</string>
 			<key>version</key>
 			<integer>2</integer>
 		</dict>
@@ -1077,7 +1282,7 @@
 				<key>escaping</key>
 				<integer>68</integer>
 				<key>script</key>
-				<string>./main.swift rotate_favorites input "$inputs"</string>
+				<string>./main.swift rotate_favorites input</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
 				<key>scriptfile</key>
@@ -1145,6 +1350,37 @@
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>argumenttrimmode</key>
+				<integer>0</integer>
+				<key>argumenttype</key>
+				<integer>2</integer>
+				<key>fixedorder</key>
+				<false/>
+				<key>items</key>
+				<string>[{"imagefile":"b171fc8163f973fcfe9f43d328811fe1096dcebe.png","title":"Outputs","arg":"output","subtitle":"Choose to Copy"},{"imagefile":"3ab9aedf8fbd94a12254709139ffcee0a288338b.png","title":"Inputs","arg":"input","subtitle":"Choose to Copy"}]</string>
+				<key>keyword</key>
+				<string>fetchaudiodevices</string>
+				<key>matchmode</key>
+				<integer>0</integer>
+				<key>runningsubtext</key>
+				<string></string>
+				<key>subtext</key>
+				<string>Choose which devices to copy to clipboard</string>
+				<key>title</key>
+				<string>Fetch Audio Devices</string>
+				<key>withspace</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.listfilter</string>
+			<key>uid</key>
+			<string>9F22BA12-18B5-4FA5-B429-12DB07DBDC90</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>lastpathcomponent</key>
 				<false/>
 				<key>onlyshowifquerypopulated</key>
@@ -1185,37 +1421,6 @@
 			<string>C46B89C0-5C32-4E45-84C4-714DAA27F2BD</string>
 			<key>version</key>
 			<integer>2</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>argumenttrimmode</key>
-				<integer>0</integer>
-				<key>argumenttype</key>
-				<integer>2</integer>
-				<key>fixedorder</key>
-				<false/>
-				<key>items</key>
-				<string>[{"imagefile":"b171fc8163f973fcfe9f43d328811fe1096dcebe.png","title":"Outputs","arg":"output","subtitle":"Choose to Copy"},{"imagefile":"3ab9aedf8fbd94a12254709139ffcee0a288338b.png","title":"Inputs","arg":"input","subtitle":"Choose to Copy"}]</string>
-				<key>keyword</key>
-				<string>fetchaudiodevices</string>
-				<key>matchmode</key>
-				<integer>0</integer>
-				<key>runningsubtext</key>
-				<string></string>
-				<key>subtext</key>
-				<string>Choose which devices to copy to clipboard</string>
-				<key>title</key>
-				<string>Fetch Audio Devices</string>
-				<key>withspace</key>
-				<false/>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.input.listfilter</string>
-			<key>uid</key>
-			<string>9F22BA12-18B5-4FA5-B429-12DB07DBDC90</string>
-			<key>version</key>
-			<integer>1</integer>
 		</dict>
 	</array>
 	<key>readme</key>
@@ -1279,6 +1484,13 @@ For entries without a friendly name, the official name will be used.
 Friendly names are used in the `in` and `out` lists in this workflow.</string>
 	<key>uidata</key>
 	<dict>
+		<key>0042D9F6-6ABD-4357-87C6-4D38F305965E</key>
+		<dict>
+			<key>xpos</key>
+			<real>800</real>
+			<key>ypos</key>
+			<real>455</real>
+		</dict>
 		<key>00704246-FE25-4B27-86E9-2EB6EDF00D67</key>
 		<dict>
 			<key>xpos</key>
@@ -1319,7 +1531,7 @@ Friendly names are used in the `in` and `out` lists in this workflow.</string>
 		<key>39B059B1-CD01-4C2D-8907-1E2F9262CD04</key>
 		<dict>
 			<key>xpos</key>
-			<real>985</real>
+			<real>1035</real>
 			<key>ypos</key>
 			<real>545</real>
 		</dict>
@@ -1340,6 +1552,20 @@ Friendly names are used in the `in` and `out` lists in this workflow.</string>
 			<real>630</real>
 			<key>ypos</key>
 			<real>435</real>
+		</dict>
+		<key>434767F1-9535-4623-BC77-D75F29A8AA34</key>
+		<dict>
+			<key>xpos</key>
+			<real>785</real>
+			<key>ypos</key>
+			<real>590</real>
+		</dict>
+		<key>4FA7BE8D-945B-4AEF-A300-9B453E7DC5DE</key>
+		<dict>
+			<key>xpos</key>
+			<real>880</real>
+			<key>ypos</key>
+			<real>550</real>
 		</dict>
 		<key>5F417B1B-FC67-40CE-8084-167913379DDE</key>
 		<dict>
@@ -1382,6 +1608,13 @@ Friendly names are used in the `in` and `out` lists in this workflow.</string>
 			<real>210</real>
 			<key>ypos</key>
 			<real>180</real>
+		</dict>
+		<key>78565025-BF49-4BE9-984F-F940D3A6F150</key>
+		<dict>
+			<key>xpos</key>
+			<real>1300</real>
+			<key>ypos</key>
+			<real>205</real>
 		</dict>
 		<key>7A1840A7-3844-4206-9B9E-B0602C41361E</key>
 		<dict>
@@ -1510,6 +1743,13 @@ Friendly names are used in the `in` and `out` lists in this workflow.</string>
 			<key>ypos</key>
 			<real>180</real>
 		</dict>
+		<key>FF90D86F-BE3D-4B34-907C-4C005BD7458E</key>
+		<dict>
+			<key>xpos</key>
+			<real>880</real>
+			<key>ypos</key>
+			<real>610</real>
+		</dict>
 	</dict>
 	<key>userconfigurationconfig</key>
 	<array>
@@ -1618,9 +1858,30 @@ Friendly names are used in the `in` and `out` lists in this workflow.</string>
 			<key>variable</key>
 			<string>inputs</string>
 		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>default</key>
+				<false/>
+				<key>required</key>
+				<false/>
+				<key>text</key>
+				<string>Keep sound effects output in sync</string>
+			</dict>
+			<key>description</key>
+			<string>When this is checked, the workflow will also switch the output for sound effects and alerts with the selected output.</string>
+			<key>label</key>
+			<string>Sound Effects Output</string>
+			<key>type</key>
+			<string>checkbox</string>
+			<key>variable</key>
+			<string>sync_sound_effects_output</string>
+		</dict>
 	</array>
+	<key>variablesdontexport</key>
+	<array/>
 	<key>version</key>
-	<string>1.3.0</string>
+	<string>1.4.1</string>
 	<key>webaddress</key>
 	<string>https://github.com/TobiasMende/alfred-audio-switcher</string>
 </dict>
