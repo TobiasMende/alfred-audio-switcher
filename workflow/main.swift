@@ -262,8 +262,9 @@ func switchDeviceByDeviceIndexAndList(type: DeviceType, deviceIndexAsString: Str
         fatalError("Invalid Device Index: \(deviceIndex)")
     }
 
-    guard let deviceID = getAudioDeviceIdByName(deviceName: String(deviceFromList), type: type) else {
-        fatalError("Device not found: Index: \(deviceIndex), deviceList: \(deviceList)")
+    let deviceName = String(deviceFromList).trimmingCharacters(in: .whitespaces)
+    guard let deviceID = getAudioDeviceIdByName(deviceName: deviceName, type: type) else {
+        fatalError("Device not found: '\(deviceName)' at Index: \(deviceIndex), deviceList: \(deviceList)")
     }
 
     guard let selectedDevice = setDefaultAudioDevice(type: type, deviceID: deviceID) else {
@@ -279,7 +280,9 @@ func convertMultilineArgumentToList(argument: String) -> [String] {
 
 func rotateFavorites(type: DeviceType) {
     let defaultDevice = getDefaultAudioDevice(type: type)
-    let deviceList = convertMultilineArgumentToList(argument: getAppropriateDeviceList(type: type)).map { String($0.split(separator: ";").first!) }
+    let deviceList = convertMultilineArgumentToList(argument: getAppropriateDeviceList(type: type)).map { 
+        String($0.split(separator: ";").first!).trimmingCharacters(in: .whitespaces)
+    }
     guard deviceList.count > 0 else {
         fatalError("No devices in list")
     }
@@ -299,7 +302,7 @@ func rotateFavorites(type: DeviceType) {
         nextDeviceIndex = (nextDeviceIndex + 1) % deviceList.count
     }
 
-    fatalError("No available devices found.")
+    fatalError("No available devices found. Current device: '\(defaultDevice.name)', Available devices in list: \(deviceList)")
 
 }
 
