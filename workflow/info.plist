@@ -437,7 +437,7 @@
 				<key>keyword</key>
 				<string>{var:output_keyword}</string>
 				<key>queuedelaycustom</key>
-				<integer>3</integer>
+				<integer>0</integer>
 				<key>queuedelayimmediatelyinitially</key>
 				<true/>
 				<key>queuedelaymode</key>
@@ -528,7 +528,7 @@
 				<key>keyword</key>
 				<string>{var:input_keyword}</string>
 				<key>queuedelaycustom</key>
-				<integer>3</integer>
+				<integer>0</integer>
 				<key>queuedelayimmediatelyinitially</key>
 				<true/>
 				<key>queuedelaymode</key>
