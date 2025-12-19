@@ -85,6 +85,8 @@
 				<false/>
 			</dict>
 		</array>
+		<key>39B059B1-CD01-4C2D-8907-1E2F9262CD04</key>
+		<array/>
 		<key>3AE8EB58-5F7D-49B6-98C1-4BAE5E79FC2E</key>
 		<array>
 			<dict>
@@ -490,7 +492,7 @@
 				<key>keyword</key>
 				<string>{var:output_keyword}</string>
 				<key>queuedelaycustom</key>
-				<integer>3</integer>
+				<integer>0</integer>
 				<key>queuedelayimmediatelyinitially</key>
 				<true/>
 				<key>queuedelaymode</key>
@@ -583,7 +585,7 @@
 				<key>keyword</key>
 				<string>{var:input_keyword}</string>
 				<key>queuedelaycustom</key>
-				<integer>3</integer>
+				<integer>0</integer>
 				<key>queuedelayimmediatelyinitially</key>
 				<true/>
 				<key>queuedelaymode</key>
