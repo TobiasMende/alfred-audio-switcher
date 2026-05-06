@@ -502,7 +502,7 @@
 				<key>runningsubtext</key>
 				<string>Please Wait</string>
 				<key>script</key>
-				<string>./main.swift list output</string>
+				<string>./audio-switcher.sh list output</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
 				<key>scriptfile</key>
@@ -531,7 +531,7 @@
 				<key>escaping</key>
 				<integer>102</integer>
 				<key>script</key>
-				<string>./main.swift switch_by_id output $1</string>
+				<string>./audio-switcher.sh switch output "$1"</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
 				<key>scriptfile</key>
@@ -595,7 +595,7 @@
 				<key>runningsubtext</key>
 				<string>Please Wait</string>
 				<key>script</key>
-				<string>./main.swift list input</string>
+				<string>./audio-switcher.sh list input</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
 				<key>scriptfile</key>
@@ -645,7 +645,7 @@
 				<key>escaping</key>
 				<integer>68</integer>
 				<key>script</key>
-				<string>./main.swift switch_by_id input $1</string>
+				<string>./audio-switcher.sh switch input "$1"</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
 				<key>scriptfile</key>
@@ -764,7 +764,7 @@
 				<key>escaping</key>
 				<integer>68</integer>
 				<key>script</key>
-				<string>./main.swift switch_by_name output $1</string>
+				<string>./audio-switcher.sh switch output "$1"</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
 				<key>scriptfile</key>
@@ -1057,7 +1057,7 @@
 				<key>escaping</key>
 				<integer>68</integer>
 				<key>script</key>
-				<string>./main.swift switch_by_name input $1</string>
+				<string>./audio-switcher.sh switch input "$1"</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
 				<key>scriptfile</key>
@@ -1240,7 +1240,7 @@
 				<key>escaping</key>
 				<integer>68</integer>
 				<key>script</key>
-				<string>./main.swift rotate_favorites output</string>
+				<string>./audio-switcher.sh rotate_favorites output</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
 				<key>scriptfile</key>
@@ -1284,7 +1284,7 @@
 				<key>escaping</key>
 				<integer>68</integer>
 				<key>script</key>
-				<string>./main.swift rotate_favorites input</string>
+				<string>./audio-switcher.sh rotate_favorites input</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
 				<key>scriptfile</key>
@@ -1409,7 +1409,7 @@
 				<key>escaping</key>
 				<integer>68</integer>
 				<key>script</key>
-				<string>./main.swift print_device_names $1</string>
+				<string>./audio-switcher.sh print_device_names "$1"</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
 				<key>scriptfile</key>
