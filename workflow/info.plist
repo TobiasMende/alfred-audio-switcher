@@ -1479,7 +1479,7 @@
 				<key>argumenttype</key>
 				<integer>2</integer>
 				<key>keyword</key>
-				<string>audioswitcher_forcerecompile</string>
+				<string>audioswitcher_recompile</string>
 				<key>subtext</key>
 				<string></string>
 				<key>text</key>
@@ -1577,7 +1577,9 @@ For entries without a friendly name, the official name will be used.
 Friendly names are used in the `in` and `out` lists in this workflow.
 
 ## Compilation during initial run
-On the initial run, the workflow will compile the swift script into a binary to drastically reduce loading time during consecutive runs. Therefore the initial run might take a couple of seconds. The following calls shall respond in the range of miliseconds.</string>
+On the initial run, the workflow will compile the swift script into a binary to drastically reduce loading time during consecutive runs. Therefore the initial run might take a couple of seconds. The following calls shall respond in the range of miliseconds.
+
+If compilation fails, the workflow wil fallback to using the interpreted (slower) version. See `compile-errors.log` in the workflow folder for details. You can trigger a forceful recompilation via the Alfred keyword `audioswitcher_recompile`.</string>
 	<key>uidata</key>
 	<dict>
 		<key>0042D9F6-6ABD-4357-87C6-4D38F305965E</key>
