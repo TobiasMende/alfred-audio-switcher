@@ -307,7 +307,7 @@ func rotateFavorites(type: DeviceType) {
 }
 
 func printUsageAndExit() {
-    print("Usage: ./main.swift <command> <type> [<ignoreList>|<deviceIndex> <deviceList>]")
+    print("Usage: ./run.sh <command> <type> [<ignoreList>|<deviceIndex> <deviceList>]")
     print("command: (list | switch_by_id | switch_by_name | rotate_favorites | print_device_names)")
     print("type: (input | output)")
     exit(1)

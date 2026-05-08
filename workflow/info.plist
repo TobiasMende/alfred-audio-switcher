@@ -492,7 +492,7 @@
 				<key>keyword</key>
 				<string>{var:output_keyword}</string>
 				<key>queuedelaycustom</key>
-				<integer>0</integer>
+				<integer>1</integer>
 				<key>queuedelayimmediatelyinitially</key>
 				<true/>
 				<key>queuedelaymode</key>
@@ -502,7 +502,7 @@
 				<key>runningsubtext</key>
 				<string>Please Wait</string>
 				<key>script</key>
-				<string>./main.swift list output</string>
+				<string>./run.sh list output</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
 				<key>scriptfile</key>
@@ -531,7 +531,7 @@
 				<key>escaping</key>
 				<integer>102</integer>
 				<key>script</key>
-				<string>./main.swift switch_by_id output $1</string>
+				<string>./run.sh switch_by_id output $1</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
 				<key>scriptfile</key>
@@ -585,7 +585,7 @@
 				<key>keyword</key>
 				<string>{var:input_keyword}</string>
 				<key>queuedelaycustom</key>
-				<integer>0</integer>
+				<integer>1</integer>
 				<key>queuedelayimmediatelyinitially</key>
 				<true/>
 				<key>queuedelaymode</key>
@@ -595,7 +595,7 @@
 				<key>runningsubtext</key>
 				<string>Please Wait</string>
 				<key>script</key>
-				<string>./main.swift list input</string>
+				<string>./run.sh list input</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
 				<key>scriptfile</key>
@@ -645,7 +645,7 @@
 				<key>escaping</key>
 				<integer>68</integer>
 				<key>script</key>
-				<string>./main.swift switch_by_id input $1</string>
+				<string>./run.sh switch_by_id input $1</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
 				<key>scriptfile</key>
@@ -764,7 +764,7 @@
 				<key>escaping</key>
 				<integer>68</integer>
 				<key>script</key>
-				<string>./main.swift switch_by_name output $1</string>
+				<string>./run.sh switch_by_name output $1</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
 				<key>scriptfile</key>
@@ -1057,7 +1057,7 @@
 				<key>escaping</key>
 				<integer>68</integer>
 				<key>script</key>
-				<string>./main.swift switch_by_name input $1</string>
+				<string>./run.sh switch_by_name input $1</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
 				<key>scriptfile</key>
@@ -1240,7 +1240,7 @@
 				<key>escaping</key>
 				<integer>68</integer>
 				<key>script</key>
-				<string>./main.swift rotate_favorites output</string>
+				<string>./run.sh rotate_favorites output</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
 				<key>scriptfile</key>
@@ -1284,7 +1284,7 @@
 				<key>escaping</key>
 				<integer>68</integer>
 				<key>script</key>
-				<string>./main.swift rotate_favorites input</string>
+				<string>./run.sh rotate_favorites input</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
 				<key>scriptfile</key>
@@ -1409,7 +1409,7 @@
 				<key>escaping</key>
 				<integer>68</integer>
 				<key>script</key>
-				<string>./main.swift print_device_names $1</string>
+				<string>./run.sh print_device_names $1</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
 				<key>scriptfile</key>
@@ -1483,7 +1483,10 @@ External Screen
 ```
 
 For entries without a friendly name, the official name will be used.
-Friendly names are used in the `in` and `out` lists in this workflow.</string>
+Friendly names are used in the `in` and `out` lists in this workflow.
+
+## Compilation during initial run
+On the initial run, the workflow will compile the swift script into a binary to drastically reduce loading time during consecutive runs. Therefore the initial run might take a couple of seconds. The following calls shall respond in the range of miliseconds.</string>
 	<key>uidata</key>
 	<dict>
 		<key>0042D9F6-6ABD-4357-87C6-4D38F305965E</key>
@@ -1880,10 +1883,8 @@ Friendly names are used in the `in` and `out` lists in this workflow.</string>
 			<string>sync_sound_effects_output</string>
 		</dict>
 	</array>
-	<key>variablesdontexport</key>
-	<array/>
 	<key>version</key>
-	<string>1.4.1</string>
+	<string>1.5.0</string>
 	<key>webaddress</key>
 	<string>https://github.com/TobiasMende/alfred-audio-switcher</string>
 </dict>
