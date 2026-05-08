@@ -333,6 +333,19 @@
 				<false/>
 			</dict>
 		</array>
+		<key>A366CD6A-9A9E-4C80-AAC0-02C7C01B99A0</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>E551FE5B-4252-4876-90BD-A3FFFFDFFA30</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
 		<key>AD6FA975-C31E-4D56-BF48-EBBC634EB89E</key>
 		<array>
 			<dict>
@@ -416,6 +429,19 @@
 			<dict>
 				<key>destinationuid</key>
 				<string>F6A49F45-6CB5-4CDF-BB3E-79B7715ACA0F</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>E551FE5B-4252-4876-90BD-A3FFFFDFFA30</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>450687E4-FD87-493D-94EA-3877DCDD0ADA</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -1424,6 +1450,71 @@
 			<key>version</key>
 			<integer>2</integer>
 		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>./recompile.sh</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>11</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>E551FE5B-4252-4876-90BD-A3FFFFDFFA30</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>2</integer>
+				<key>keyword</key>
+				<string>audioswitcher_recompile</string>
+				<key>subtext</key>
+				<string></string>
+				<key>text</key>
+				<string>Force Binary Recompilation</string>
+				<key>withspace</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.keyword</string>
+			<key>uid</key>
+			<string>A366CD6A-9A9E-4C80-AAC0-02C7C01B99A0</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>lastpathcomponent</key>
+				<false/>
+				<key>onlyshowifquerypopulated</key>
+				<false/>
+				<key>removeextension</key>
+				<false/>
+				<key>text</key>
+				<string>{query}</string>
+				<key>title</key>
+				<string>Audio Switcher</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.notification</string>
+			<key>uid</key>
+			<string>450687E4-FD87-493D-94EA-3877DCDD0ADA</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
 	</array>
 	<key>readme</key>
 	<string># Audio Switcher
@@ -1486,7 +1577,9 @@ For entries without a friendly name, the official name will be used.
 Friendly names are used in the `in` and `out` lists in this workflow.
 
 ## Compilation during initial run
-On the initial run, the workflow will compile the swift script into a binary to drastically reduce loading time during consecutive runs. Therefore the initial run might take a couple of seconds. The following calls shall respond in the range of miliseconds.</string>
+On the initial run, the workflow will compile the swift script into a binary to drastically reduce loading time during consecutive runs. Therefore the initial run might take a couple of seconds. The following calls shall respond in the range of miliseconds.
+
+If compilation fails, the workflow wil fallback to using the interpreted (slower) version. See `compile-errors.log` in the workflow folder for details. You can trigger a forceful recompilation via the Alfred keyword `audioswitcher_recompile`.</string>
 	<key>uidata</key>
 	<dict>
 		<key>0042D9F6-6ABD-4357-87C6-4D38F305965E</key>
@@ -1564,6 +1657,13 @@ On the initial run, the workflow will compile the swift script into a binary to 
 			<real>785</real>
 			<key>ypos</key>
 			<real>590</real>
+		</dict>
+		<key>450687E4-FD87-493D-94EA-3877DCDD0ADA</key>
+		<dict>
+			<key>xpos</key>
+			<real>710</real>
+			<key>ypos</key>
+			<real>1590</real>
 		</dict>
 		<key>4FA7BE8D-945B-4AEF-A300-9B453E7DC5DE</key>
 		<dict>
@@ -1677,6 +1777,13 @@ On the initial run, the workflow will compile the swift script into a binary to 
 			<key>ypos</key>
 			<real>910</real>
 		</dict>
+		<key>A366CD6A-9A9E-4C80-AAC0-02C7C01B99A0</key>
+		<dict>
+			<key>xpos</key>
+			<real>185</real>
+			<key>ypos</key>
+			<real>1590</real>
+		</dict>
 		<key>AD6FA975-C31E-4D56-BF48-EBBC634EB89E</key>
 		<dict>
 			<key>xpos</key>
@@ -1729,6 +1836,13 @@ On the initial run, the workflow will compile the swift script into a binary to 
 			<real>395</real>
 			<key>ypos</key>
 			<real>900</real>
+		</dict>
+		<key>E551FE5B-4252-4876-90BD-A3FFFFDFFA30</key>
+		<dict>
+			<key>xpos</key>
+			<real>460</real>
+			<key>ypos</key>
+			<real>1590</real>
 		</dict>
 		<key>F6A49F45-6CB5-4CDF-BB3E-79B7715ACA0F</key>
 		<dict>
