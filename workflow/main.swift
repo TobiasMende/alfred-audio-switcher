@@ -174,10 +174,40 @@ func convertStringToDeviceID(deviceIDString: String) -> AudioDeviceID? {
     }
 }
 
+func escapeJsonString(_ string: String) -> String {
+    var escaped = ""
+    for char in string {
+        switch char {
+        case "\"":
+            escaped += "\\\""
+        case "\\":
+            escaped += "\\\\"
+        case "\n":
+            escaped += "\\n"
+        case "\r":
+            escaped += "\\r"
+        case "\t":
+            escaped += "\\t"
+        case "\u{08}":
+            escaped += "\\b"
+        case "\u{0C}":
+            escaped += "\\f"
+        default:
+            if char.unicodeScalars.first!.value < 0x20 {
+                escaped += String(format: "\\u%04x", char.unicodeScalars.first!.value)
+            } else {
+                escaped.append(char)
+            }
+        }
+    }
+    return escaped
+}
 
 func deviceToJson(device: (name: String, id: AudioDeviceID), friendlyName: String, isDefault: Bool, type: DeviceType) -> String {
     let iconName = isDefault ? "\(type)_selected.png" : "\(type).png"
-    return "{\"title\": \"\(friendlyName)\", \"uid\": \"\(device.name)\", \"autocomplete\": \"\(friendlyName)\", \"arg\": \"\(device.id)\", \"icon\": {\"path\": \"./icons/\(iconName)\"}}"
+    let escapedFriendlyName = escapeJsonString(friendlyName)
+    let escapedDeviceName = escapeJsonString(device.name)
+    return "{\"title\": \"\(escapedFriendlyName)\", \"uid\": \"\(escapedDeviceName)\", \"autocomplete\": \"\(escapedFriendlyName)\", \"arg\": \"\(device.id)\", \"icon\": {\"path\": \"./icons/\(iconName)\"}}"
 }
 
 func filterAudioDevices(devices: [(name: String, id: AudioDeviceID)], ignoreList: [String]) -> [(name: String, id: AudioDeviceID)] {
