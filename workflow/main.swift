@@ -239,7 +239,7 @@ func printDeviceItems(type: DeviceType) {
     let devices = getAudioDeviceList(type: type)
     let devicesAsJson = filterAudioDevices(devices: devices, ignoreList: ignoreList).map { device in
         let isDefault = (defaultDevice.id == device.id)
-        let friendlyName = favoriteList[device.name] ?? device.name
+        let friendlyName = favoriteList[device.uid] ?? favoriteList[device.name] ?? device.name
         return deviceToJson(device: device, friendlyName: friendlyName, isDefault: isDefault, type: type)
     }.joined(separator: ",")
 
