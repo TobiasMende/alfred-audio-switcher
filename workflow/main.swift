@@ -54,7 +54,7 @@ func getAudioDeviceNameById(deviceID: AudioDeviceID) -> String {
 func getAudioDeviceId(byKey key: String, type: DeviceType) -> AudioDeviceID? {
     let devices = getAudioDeviceList(type: type)
 
-    if let byUID = devices.first(where: { $0.uid == key }) {
+    if !key.isEmpty, let byUID = devices.first(where: { $0.uid == key }) {
         return byUID.id
     }
 
@@ -287,22 +287,27 @@ func switchDeviceByDeviceIndexAndList(type: DeviceType, deviceIndexAsString: Str
         fatalError("Invalid Index Passed")
     }
 
-    let components = deviceList[deviceIndex].split(separator: ";", maxSplits: 1, omittingEmptySubsequences: true)
-    guard let keyComponent = components.first else {
+    let favorite = parseFavoriteLine(deviceList[deviceIndex])
+    guard !favorite.key.isEmpty else {
         fatalError("Invalid Device Index: \(deviceIndex)")
     }
 
-    let deviceName = String(keyComponent).trimmingCharacters(in: .whitespaces)
-    let label = components.count == 2 ? String(components[1]).trimmingCharacters(in: .whitespaces) : nil
-    guard let deviceID = getAudioDeviceId(byKey: deviceName, type: type) else {
-        fatalError("Device not found: '\(deviceName)' at Index: \(deviceIndex), deviceList: \(deviceList)")
+    guard let deviceID = getAudioDeviceId(byKey: favorite.key, type: type) else {
+        fatalError("Device not found: '\(favorite.key)' at Index: \(deviceIndex), deviceList: \(deviceList)")
     }
 
     guard let selectedDevice = setDefaultAudioDevice(type: type, deviceID: deviceID) else {
         fatalError("Device Not Found: \(deviceID)")
     }
 
-    print(label ?? selectedDevice)
+    print(favorite.label ?? selectedDevice)
+}
+
+func parseFavoriteLine(_ line: String) -> (key: String, label: String?) {
+    let components = line.split(separator: ";", maxSplits: 1, omittingEmptySubsequences: true)
+    let key = String(components.first ?? "").trimmingCharacters(in: .whitespaces)
+    let label = components.count == 2 ? String(components[1]).trimmingCharacters(in: .whitespaces) : nil
+    return (key, label)
 }
 
 func convertMultilineArgumentToList(argument: String) -> [String] {
@@ -311,18 +316,13 @@ func convertMultilineArgumentToList(argument: String) -> [String] {
 
 func rotateFavorites(type: DeviceType) {
     let defaultDevice = getDefaultAudioDevice(type: type)
-    let favorites = convertMultilineArgumentToList(argument: getAppropriateDeviceList(type: type)).map { line -> (key: String, label: String?) in
-        let components = line.split(separator: ";", maxSplits: 1, omittingEmptySubsequences: true)
-        let key = String(components.first ?? "").trimmingCharacters(in: .whitespaces)
-        let label = components.count == 2 ? String(components[1]).trimmingCharacters(in: .whitespaces) : nil
-        return (key, label)
-    }
+    let favorites = convertMultilineArgumentToList(argument: getAppropriateDeviceList(type: type)).map(parseFavoriteLine)
     guard favorites.count > 0 else {
         fatalError("No devices in list")
     }
 
     let defaultDeviceIndex = favorites.firstIndex {
-        $0.key == defaultDevice.uid || $0.key == defaultDevice.name
+        (!defaultDevice.uid.isEmpty && $0.key == defaultDevice.uid) || $0.key == defaultDevice.name
     } ?? -1
     var nextDeviceIndex = (defaultDeviceIndex + 1) % favorites.count
 
