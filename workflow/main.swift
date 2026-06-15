@@ -309,31 +309,34 @@ func convertMultilineArgumentToList(argument: String) -> [String] {
 
 func rotateFavorites(type: DeviceType) {
     let defaultDevice = getDefaultAudioDevice(type: type)
-    let deviceList = convertMultilineArgumentToList(argument: getAppropriateDeviceList(type: type)).map { 
-        String($0.split(separator: ";").first!).trimmingCharacters(in: .whitespaces)
+    let favorites = convertMultilineArgumentToList(argument: getAppropriateDeviceList(type: type)).map { line -> (key: String, label: String?) in
+        let components = line.split(separator: ";", maxSplits: 1, omittingEmptySubsequences: true)
+        let key = String(components.first ?? "").trimmingCharacters(in: .whitespaces)
+        let label = components.count == 2 ? String(components[1]).trimmingCharacters(in: .whitespaces) : nil
+        return (key, label)
     }
-    guard deviceList.count > 0 else {
+    guard favorites.count > 0 else {
         fatalError("No devices in list")
     }
 
-    let defaultDeviceIndex = deviceList.firstIndex {
-        $0 == defaultDevice.uid || $0 == defaultDevice.name
+    let defaultDeviceIndex = favorites.firstIndex {
+        $0.key == defaultDevice.uid || $0.key == defaultDevice.name
     } ?? -1
-    var nextDeviceIndex = (defaultDeviceIndex + 1) % deviceList.count
+    var nextDeviceIndex = (defaultDeviceIndex + 1) % favorites.count
 
-    for _ in 0..<deviceList.count {
-        let nextDeviceName = deviceList[nextDeviceIndex]
-        
-        if let nextDeviceID = getAudioDeviceId(byKey: nextDeviceName, type: type),
+    for _ in 0..<favorites.count {
+        let nextFavorite = favorites[nextDeviceIndex]
+
+        if let nextDeviceID = getAudioDeviceId(byKey: nextFavorite.key, type: type),
            let selectedDevice = setDefaultAudioDevice(type: type, deviceID: nextDeviceID) {
-            print(selectedDevice)
+            print(nextFavorite.label ?? selectedDevice)
             return
         }
 
-        nextDeviceIndex = (nextDeviceIndex + 1) % deviceList.count
+        nextDeviceIndex = (nextDeviceIndex + 1) % favorites.count
     }
 
-    fatalError("No available devices found. Current device: '\(defaultDevice.name)', Available devices in list: \(deviceList)")
+    fatalError("No available devices found. Current device: '\(defaultDevice.name)', Available devices in list: \(favorites.map { $0.key })")
 
 }
 
