@@ -13,6 +13,29 @@ Once installed, use the `fetchaudiodevices` command in Alfred. Once you have sel
 the workflow will copy a list of devices to the Clipboard. This is a convenience feature to support filling the
 *Ignorelist*, *Output Favorites* and *Input Favorites*. (See below)
 
+Each copied line is ready to paste into the favorites and has the form `UID;Name`, for example:
+```
+BuiltInSpeakerDevice;MacBook Pro Speakers
+09D14880-0000-0000-3323-0104B53C2278;BenQ PD2706U
+09D14880-0000-0000-3323-0104B53C2278_00000000;BenQ PD2706U
+```
+The part before the `;` is the device **UID**, a stable identifier that uniquely picks one device — even when two
+devices share the same model name (e.g. two identical monitors, as above). The part after the `;` is a **friendly
+label** shown in Alfred and in the switch notification; edit it to whatever you like (e.g. `Left Monitor`).
+
+You can also grab a single line straight from the device picker: open the output/input list, highlight a device and
+hold **⌥ (Option)** while selecting it to copy that device's `UID;Name` line to the clipboard instead of switching to it.
+
+### Names, UIDs and Friendly Labels
+Favorites, the *Ignorelist* and friendly labels all accept either a device **name** or a device **UID** as the key:
+
+- A plain **name** (e.g. `MacBook Pro Speakers`) is the simplest form and keeps working as before.
+- A **UID** targets one specific device and is the only way to distinguish two devices with an identical name.
+- Add `;Label` after the key to set the text shown when that device is selected.
+
+In the device picker, two devices that share a name keep a clean title and show their distinguishing UID in the
+subtitle, so you can tell them apart and copy the right UID.
+
 ### Parameter Examples
 
 #### Ignorelist
@@ -22,6 +45,8 @@ External Headphones
 iPhone Microphone
 ```
 causes both listed devices not to be listed when selecting inputs or outputs.
+
+Each entry may be a device **name** or a device **UID** (use a UID to ignore one specific device when two share a name).
 
 
 #### Output Favorites

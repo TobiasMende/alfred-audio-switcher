@@ -51,14 +51,14 @@ func getAudioDeviceNameById(deviceID: AudioDeviceID) -> String {
     return deviceName
 }
 
-func getAudioDeviceIdByName(deviceName: String, type: DeviceType) -> AudioDeviceID? {
+func getAudioDeviceId(byKey key: String, type: DeviceType) -> AudioDeviceID? {
     let devices = getAudioDeviceList(type: type)
 
-    let foundDevice = devices.first { device in
-           device.name == deviceName
+    if !key.isEmpty, let byUID = devices.first(where: { $0.uid == key }) {
+        return byUID.id
     }
 
-    return foundDevice?.id
+    return devices.first(where: { $0.name == key })?.id
 }
 
 func setDefaultAudioDevice(type: DeviceType, deviceID: AudioDeviceID) -> String? {
@@ -109,7 +109,23 @@ func getDeviceName(deviceID: AudioDeviceID) -> String? {
     }
 }
 
-func getDefaultAudioDevice(type: DeviceType) -> (name: String, id: AudioDeviceID) {
+func getDeviceUID(deviceID: AudioDeviceID) -> String? {
+    var nameSize = UInt32(MemoryLayout<CFString>.size)
+    var deviceUID: CFString = "" as CFString
+    var address = createPropertyAddress(selector: kAudioDevicePropertyDeviceUID)
+
+    let status = withUnsafeMutablePointer(to: &deviceUID) { ptr in
+        AudioObjectGetPropertyData(deviceID, &address, 0, nil, &nameSize, ptr)
+    }
+
+    if status == noErr, let uid = deviceUID as String? {
+        return uid
+    } else {
+        return nil
+    }
+}
+
+func getDefaultAudioDevice(type: DeviceType) -> (name: String, uid: String, id: AudioDeviceID) {
     var deviceID = AudioDeviceID()
     var propertySize = UInt32(MemoryLayout<AudioDeviceID>.size)
     var propertyAddress = getPropertyAddress(type: type)
@@ -121,10 +137,11 @@ func getDefaultAudioDevice(type: DeviceType) -> (name: String, id: AudioDeviceID
     guard let deviceName = getDeviceName(deviceID: deviceID) else {
         fatalError("Failed to retrieve device Name for \(deviceID)")
     }
-    return (name: deviceName, id: deviceID)
+    let deviceUID = getDeviceUID(deviceID: deviceID) ?? ""
+    return (name: deviceName, uid: deviceUID, id: deviceID)
 }
 
-func getAudioDeviceList(type: DeviceType) -> [(name: String, id: AudioDeviceID)] {
+func getAudioDeviceList(type: DeviceType) -> [(name: String, uid: String, id: AudioDeviceID)] {
     var propertySize: UInt32 = 0
     var address = createPropertyAddress(selector: kAudioHardwarePropertyDevices)
 
@@ -141,7 +158,7 @@ func getAudioDeviceList(type: DeviceType) -> [(name: String, id: AudioDeviceID)]
         fatalError("Error: Unable to get audio devices")
     }
 
-    var deviceList: [(name: String, id: AudioDeviceID)] = []
+    var deviceList: [(name: String, uid: String, id: AudioDeviceID)] = []
     for id in deviceIDs {
         let scope: AudioObjectPropertyScope = (type == .input) ? kAudioDevicePropertyScopeInput : kAudioDevicePropertyScopeOutput
         var streamAddress = AudioObjectPropertyAddress(
@@ -159,7 +176,8 @@ func getAudioDeviceList(type: DeviceType) -> [(name: String, id: AudioDeviceID)]
             continue
         }
 
-        deviceList.append((name: deviceName, id: id))
+        let deviceUID = getDeviceUID(deviceID: id) ?? ""
+        deviceList.append((name: deviceName, uid: deviceUID, id: id))
 
     }
 
@@ -175,18 +193,21 @@ func convertStringToDeviceID(deviceIDString: String) -> AudioDeviceID? {
 }
 
 
-func deviceToJson(device: (name: String, id: AudioDeviceID), friendlyName: String, isDefault: Bool, type: DeviceType) -> String {
+func deviceToJson(device: (name: String, uid: String, id: AudioDeviceID), friendlyName: String, subtitle: String, isDefault: Bool, type: DeviceType) -> String {
     let iconName = isDefault ? "\(type)_selected.png" : "\(type).png"
-    return "{\"title\": \"\(friendlyName)\", \"uid\": \"\(device.name)\", \"autocomplete\": \"\(friendlyName)\", \"arg\": \"\(device.id)\", \"icon\": {\"path\": \"./icons/\(iconName)\"}}"
+    let favoritesKey = device.uid.isEmpty ? device.name : device.uid
+    let favoritesLine = "\(favoritesKey);\(device.name)"
+    return "{\"title\": \"\(friendlyName)\", \"subtitle\": \"\(subtitle)\", \"uid\": \"\(device.uid)\", \"autocomplete\": \"\(friendlyName)\", \"arg\": \"\(device.id)\", \"text\": {\"copy\": \"\(favoritesLine)\"}, \"mods\": {\"alt\": {\"valid\": true, \"arg\": \"\(favoritesLine)\", \"subtitle\": \"Copy favorites line\"}}, \"icon\": {\"path\": \"./icons/\(iconName)\"}}"
 }
 
-func filterAudioDevices(devices: [(name: String, id: AudioDeviceID)], ignoreList: [String]) -> [(name: String, id: AudioDeviceID)] {
-    return devices.filter { !ignoreList.contains($0.name) }
+func filterAudioDevices(devices: [(name: String, uid: String, id: AudioDeviceID)], ignoreList: [String]) -> [(name: String, uid: String, id: AudioDeviceID)] {
+    return devices.filter { !ignoreList.contains($0.name) && !ignoreList.contains($0.uid) }
 }
 
 func printDeviceNames(type: DeviceType) {
     getAudioDeviceList(type: type).forEach { device in
-            print(device.name)
+            let key = device.uid.isEmpty ? device.name : device.uid
+            print("\(key);\(device.name)")
     }
 }
 
@@ -218,11 +239,22 @@ func printDeviceItems(type: DeviceType) {
     let ignoreList = convertMultilineArgumentToList(argument: getEnvironmentVariable(named: "ignorelist"))
     let favoriteList = convertFavoritesList(favoritesAsMultilineString: favoritesAsMultilineString)
     let defaultDevice = getDefaultAudioDevice(type: type)
-    let devices = getAudioDeviceList(type: type)
-    let devicesAsJson = filterAudioDevices(devices: devices, ignoreList: ignoreList).map { device in
+    let devices = filterAudioDevices(devices: getAudioDeviceList(type: type), ignoreList: ignoreList)
+
+    var nameCounts: [String: Int] = [:]
+    for device in devices {
+        nameCounts[device.name, default: 0] += 1
+    }
+
+    let devicesAsJson = devices.map { device in
         let isDefault = (defaultDevice.id == device.id)
-        let friendlyName = favoriteList[device.name] ?? device.name
-        return deviceToJson(device: device, friendlyName: friendlyName, isDefault: isDefault, type: type)
+        let explicitFriendly = (device.uid.isEmpty ? nil : favoriteList[device.uid]) ?? favoriteList[device.name]
+        let friendlyName = explicitFriendly ?? device.name
+
+        let nameCollides = (nameCounts[device.name] ?? 0) > 1
+        let subtitle = (explicitFriendly == nil && nameCollides && !device.uid.isEmpty) ? device.uid : ""
+
+        return deviceToJson(device: device, friendlyName: friendlyName, subtitle: subtitle, isDefault: isDefault, type: type)
     }.joined(separator: ",")
 
     print("{\"items\": [\(devicesAsJson)]}")
@@ -258,20 +290,27 @@ func switchDeviceByDeviceIndexAndList(type: DeviceType, deviceIndexAsString: Str
         fatalError("Invalid Index Passed")
     }
 
-    guard let deviceFromList = deviceList[deviceIndex].split(separator: ";").first else {
+    let favorite = parseFavoriteLine(deviceList[deviceIndex])
+    guard !favorite.key.isEmpty else {
         fatalError("Invalid Device Index: \(deviceIndex)")
     }
 
-    let deviceName = String(deviceFromList).trimmingCharacters(in: .whitespaces)
-    guard let deviceID = getAudioDeviceIdByName(deviceName: deviceName, type: type) else {
-        fatalError("Device not found: '\(deviceName)' at Index: \(deviceIndex), deviceList: \(deviceList)")
+    guard let deviceID = getAudioDeviceId(byKey: favorite.key, type: type) else {
+        fatalError("Device not found: '\(favorite.key)' at Index: \(deviceIndex), deviceList: \(deviceList)")
     }
 
     guard let selectedDevice = setDefaultAudioDevice(type: type, deviceID: deviceID) else {
         fatalError("Device Not Found: \(deviceID)")
     }
 
-    print(selectedDevice)
+    print(favorite.label ?? selectedDevice)
+}
+
+func parseFavoriteLine(_ line: String) -> (key: String, label: String?) {
+    let components = line.split(separator: ";", maxSplits: 1, omittingEmptySubsequences: true)
+    let key = String(components.first ?? "").trimmingCharacters(in: .whitespaces)
+    let label = components.count == 2 ? String(components[1]).trimmingCharacters(in: .whitespaces) : nil
+    return (key, label)
 }
 
 func convertMultilineArgumentToList(argument: String) -> [String] {
@@ -280,29 +319,29 @@ func convertMultilineArgumentToList(argument: String) -> [String] {
 
 func rotateFavorites(type: DeviceType) {
     let defaultDevice = getDefaultAudioDevice(type: type)
-    let deviceList = convertMultilineArgumentToList(argument: getAppropriateDeviceList(type: type)).map { 
-        String($0.split(separator: ";").first!).trimmingCharacters(in: .whitespaces)
-    }
-    guard deviceList.count > 0 else {
+    let favorites = convertMultilineArgumentToList(argument: getAppropriateDeviceList(type: type)).map(parseFavoriteLine)
+    guard favorites.count > 0 else {
         fatalError("No devices in list")
     }
 
-    let defaultDeviceIndex = deviceList.firstIndex(of: defaultDevice.name) ?? -1
-    var nextDeviceIndex = (defaultDeviceIndex + 1) % deviceList.count
+    let defaultDeviceIndex = favorites.firstIndex {
+        (!defaultDevice.uid.isEmpty && $0.key == defaultDevice.uid) || $0.key == defaultDevice.name
+    } ?? -1
+    var nextDeviceIndex = (defaultDeviceIndex + 1) % favorites.count
 
-    for _ in 0..<deviceList.count {
-        let nextDeviceName = deviceList[nextDeviceIndex]
-        
-        if let nextDeviceID = getAudioDeviceIdByName(deviceName: nextDeviceName, type: type),
+    for _ in 0..<favorites.count {
+        let nextFavorite = favorites[nextDeviceIndex]
+
+        if let nextDeviceID = getAudioDeviceId(byKey: nextFavorite.key, type: type),
            let selectedDevice = setDefaultAudioDevice(type: type, deviceID: nextDeviceID) {
-            print(selectedDevice)
+            print(nextFavorite.label ?? selectedDevice)
             return
         }
 
-        nextDeviceIndex = (nextDeviceIndex + 1) % deviceList.count
+        nextDeviceIndex = (nextDeviceIndex + 1) % favorites.count
     }
 
-    fatalError("No available devices found. Current device: '\(defaultDevice.name)', Available devices in list: \(deviceList)")
+    fatalError("No available devices found. Current device: '\(defaultDevice.name)', Available devices in list: \(favorites.map { $0.key })")
 
 }
 

@@ -17,6 +17,8 @@ Alfred workflow for macOS audio input/output device switching via Core Audio API
 ./workflow/run.sh print_device_names output
 ```
 
+`print_device_names` prints one favorites-ready `UID;Name` line per device — paste straight into `outputs`/`inputs` (the `UID` key targets a specific device; the part after `;` is the editable label).
+
 ## Environment Variables
 
 - `output_keyword` / `input_keyword`: Alfred keywords (default: "out" / "in")
@@ -24,9 +26,11 @@ Alfred workflow for macOS audio input/output device switching via Core Audio API
 - `outputs` / `inputs`: Up to 3 favorites (newline-separated)
 - `sync_sound_effects_output`: Sync sound effects output ("1" = on)
 
+Keys in `ignorelist`, `outputs`, and `inputs` accept a device **name or UID**. UIDs are stable per device and disambiguate identical model names (e.g. two of the same monitor). Get UIDs with `print_device_names` (see Testing).
+
 ## Friendly Names
 
-Semicolon-separated: `MacBook Pro Speakers;Mac`
+Semicolon-separated, keyed by device **name or UID**: `MacBook Pro Speakers;Mac` or `BuiltInSpeakerDevice;Mac`. Use a UID to target one specific device when two devices share a name (e.g. two identical monitors).
 
 ## Hotkeys
 
