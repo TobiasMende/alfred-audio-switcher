@@ -199,7 +199,7 @@ func deviceToJson(device: (name: String, uid: String, id: AudioDeviceID), friend
 }
 
 func filterAudioDevices(devices: [(name: String, uid: String, id: AudioDeviceID)], ignoreList: [String]) -> [(name: String, uid: String, id: AudioDeviceID)] {
-    return devices.filter { !ignoreList.contains($0.name) }
+    return devices.filter { !ignoreList.contains($0.name) && !ignoreList.contains($0.uid) }
 }
 
 func printDeviceNames(type: DeviceType) {
