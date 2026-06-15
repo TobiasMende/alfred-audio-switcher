@@ -245,7 +245,7 @@ func printDeviceItems(type: DeviceType) {
 
     let devicesAsJson = devices.map { device in
         let isDefault = (defaultDevice.id == device.id)
-        let explicitFriendly = favoriteList[device.uid] ?? favoriteList[device.name]
+        let explicitFriendly = (device.uid.isEmpty ? nil : favoriteList[device.uid]) ?? favoriteList[device.name]
         var friendlyName = explicitFriendly ?? device.name
 
         let nameCollides = (nameCounts[device.name] ?? 0) > 1
