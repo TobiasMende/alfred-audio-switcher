@@ -195,7 +195,7 @@ func convertStringToDeviceID(deviceIDString: String) -> AudioDeviceID? {
 
 func deviceToJson(device: (name: String, uid: String, id: AudioDeviceID), friendlyName: String, isDefault: Bool, type: DeviceType) -> String {
     let iconName = isDefault ? "\(type)_selected.png" : "\(type).png"
-    return "{\"title\": \"\(friendlyName)\", \"uid\": \"\(device.name)\", \"autocomplete\": \"\(friendlyName)\", \"arg\": \"\(device.id)\", \"icon\": {\"path\": \"./icons/\(iconName)\"}}"
+    return "{\"title\": \"\(friendlyName)\", \"uid\": \"\(device.uid)\", \"autocomplete\": \"\(friendlyName)\", \"arg\": \"\(device.id)\", \"icon\": {\"path\": \"./icons/\(iconName)\"}}"
 }
 
 func filterAudioDevices(devices: [(name: String, uid: String, id: AudioDeviceID)], ignoreList: [String]) -> [(name: String, uid: String, id: AudioDeviceID)] {
