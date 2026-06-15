@@ -287,11 +287,13 @@ func switchDeviceByDeviceIndexAndList(type: DeviceType, deviceIndexAsString: Str
         fatalError("Invalid Index Passed")
     }
 
-    guard let deviceFromList = deviceList[deviceIndex].split(separator: ";").first else {
+    let components = deviceList[deviceIndex].split(separator: ";", maxSplits: 1, omittingEmptySubsequences: true)
+    guard let keyComponent = components.first else {
         fatalError("Invalid Device Index: \(deviceIndex)")
     }
 
-    let deviceName = String(deviceFromList).trimmingCharacters(in: .whitespaces)
+    let deviceName = String(keyComponent).trimmingCharacters(in: .whitespaces)
+    let label = components.count == 2 ? String(components[1]).trimmingCharacters(in: .whitespaces) : nil
     guard let deviceID = getAudioDeviceId(byKey: deviceName, type: type) else {
         fatalError("Device not found: '\(deviceName)' at Index: \(deviceIndex), deviceList: \(deviceList)")
     }
@@ -300,7 +302,7 @@ func switchDeviceByDeviceIndexAndList(type: DeviceType, deviceIndexAsString: Str
         fatalError("Device Not Found: \(deviceID)")
     }
 
-    print(selectedDevice)
+    print(label ?? selectedDevice)
 }
 
 func convertMultilineArgumentToList(argument: String) -> [String] {
