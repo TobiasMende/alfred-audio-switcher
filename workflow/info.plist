@@ -1980,7 +1980,7 @@ If compilation fails, the workflow wil fallback to using the interpreted (slower
 				<integer>6</integer>
 			</dict>
 			<key>description</key>
-			<string>List of up to three output names (one per line) – Hint: Get them from the "fetchaudiodevices" command</string>
+			<string>Up to three output favorites (one per line). Each entry is a device name or UID, optionally followed by ;FriendlyName for a custom label. Use a UID to target one specific device when two share the same name. Hint: get ready-to-paste lines from the &quot;fetchaudiodevices&quot; command.</string>
 			<key>label</key>
 			<string>Output Favorites</string>
 			<key>type</key>
@@ -2001,7 +2001,7 @@ If compilation fails, the workflow wil fallback to using the interpreted (slower
 				<integer>6</integer>
 			</dict>
 			<key>description</key>
-			<string>List of up to three input names (one per line) – Hint: Get them from the "fetchaudiodevices" command</string>
+			<string>Up to three input favorites (one per line). Each entry is a device name or UID, optionally followed by ;FriendlyName for a custom label. Use a UID to target one specific device when two share the same name. Hint: get ready-to-paste lines from the &quot;fetchaudiodevices&quot; command.</string>
 			<key>label</key>
 			<string>Input Favorites</string>
 			<key>type</key>
