@@ -1569,6 +1569,8 @@ iPhone Microphone
 ```
 causes both listed devices not to be listed when selecting inputs or outputs.
 
+Each entry may be a device **name** or a device **UID** (use a UID to ignore one specific device when two share a name).
+
 
 ### Output Favorites
 The value
