@@ -71,6 +71,16 @@
 				<key>vitoclose</key>
 				<false/>
 			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>00704246-FE25-4B27-86E9-2EB6EDF00D67</string>
+				<key>modifiers</key>
+				<integer>524288</integer>
+				<key>modifiersubtext</key>
+				<string>Copy favorites line</string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
 		</array>
 		<key>1AF283DE-8EDC-4006-AD54-91F4C226E5C9</key>
 		<array>
@@ -381,6 +391,16 @@
 				<integer>0</integer>
 				<key>modifiersubtext</key>
 				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>00704246-FE25-4B27-86E9-2EB6EDF00D67</string>
+				<key>modifiers</key>
+				<integer>524288</integer>
+				<key>modifiersubtext</key>
+				<string>Copy favorites line</string>
 				<key>vitoclose</key>
 				<false/>
 			</dict>

@@ -24,7 +24,7 @@ devices share the same model name (e.g. two identical monitors, as above). The p
 label** shown in Alfred and in the switch notification; edit it to whatever you like (e.g. `Left Monitor`).
 
 You can also grab a single line straight from the device picker: open the output/input list, highlight a device and
-press **⌘C** to copy that device's `UID;Name` line to the clipboard.
+hold **⌥ (Option)** while selecting it to copy that device's `UID;Name` line to the clipboard instead of switching to it.
 
 ### Names, UIDs and Friendly Labels
 Favorites, the *Ignorelist* and friendly labels all accept either a device **name** or a device **UID** as the key:
