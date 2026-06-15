@@ -193,9 +193,9 @@ func convertStringToDeviceID(deviceIDString: String) -> AudioDeviceID? {
 }
 
 
-func deviceToJson(device: (name: String, uid: String, id: AudioDeviceID), friendlyName: String, isDefault: Bool, type: DeviceType) -> String {
+func deviceToJson(device: (name: String, uid: String, id: AudioDeviceID), friendlyName: String, subtitle: String, isDefault: Bool, type: DeviceType) -> String {
     let iconName = isDefault ? "\(type)_selected.png" : "\(type).png"
-    return "{\"title\": \"\(friendlyName)\", \"uid\": \"\(device.uid)\", \"autocomplete\": \"\(friendlyName)\", \"arg\": \"\(device.id)\", \"icon\": {\"path\": \"./icons/\(iconName)\"}}"
+    return "{\"title\": \"\(friendlyName)\", \"subtitle\": \"\(subtitle)\", \"uid\": \"\(device.uid)\", \"autocomplete\": \"\(friendlyName)\", \"arg\": \"\(device.id)\", \"icon\": {\"path\": \"./icons/\(iconName)\"}}"
 }
 
 func filterAudioDevices(devices: [(name: String, uid: String, id: AudioDeviceID)], ignoreList: [String]) -> [(name: String, uid: String, id: AudioDeviceID)] {
@@ -246,14 +246,12 @@ func printDeviceItems(type: DeviceType) {
     let devicesAsJson = devices.map { device in
         let isDefault = (defaultDevice.id == device.id)
         let explicitFriendly = (device.uid.isEmpty ? nil : favoriteList[device.uid]) ?? favoriteList[device.name]
-        var friendlyName = explicitFriendly ?? device.name
+        let friendlyName = explicitFriendly ?? device.name
 
         let nameCollides = (nameCounts[device.name] ?? 0) > 1
-        if explicitFriendly == nil, nameCollides, !device.uid.isEmpty {
-            friendlyName = "\(device.name) (\(device.uid))"
-        }
+        let subtitle = (explicitFriendly == nil && nameCollides && !device.uid.isEmpty) ? device.uid : ""
 
-        return deviceToJson(device: device, friendlyName: friendlyName, isDefault: isDefault, type: type)
+        return deviceToJson(device: device, friendlyName: friendlyName, subtitle: subtitle, isDefault: isDefault, type: type)
     }.joined(separator: ",")
 
     print("{\"items\": [\(devicesAsJson)]}")

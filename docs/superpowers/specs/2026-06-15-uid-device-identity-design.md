@@ -99,14 +99,16 @@ rotate correctly between two identically-named monitors.
 In `printDeviceItems`, after computing the displayed (friendly) name for each
 device: if **two or more devices share the same `device.name`** AND a device has
 **no explicit friendly mapping** (neither `favoriteMap[uid]` nor
-`favoriteMap[name]` matched), append ` (<uid>)` to that device's title.
+`favoriteMap[name]` matched), put the full `<uid>` in that item's Alfred
+**subtitle**. The title stays the clean device name.
 
-- Devices with unique names: unchanged.
-- Devices the user explicitly named: unchanged (already distinct).
-- The appended UID is the full UID, which doubles as the exact string to paste
-  into config. If `uid` is empty, no suffix is appended.
+- Devices with unique names: empty subtitle.
+- Devices the user explicitly named: empty subtitle (already distinct).
+- The subtitle UID doubles as the exact string to paste into config. If `uid` is
+  empty, no subtitle is set.
 
-Example colliding output title: `Dell U2720Q (AppleHDAEngineOutput:1B,0,1,0:0)`.
+Example colliding output: title `Dell U2720Q`, subtitle
+`AppleHDAEngineOutput:1B,0,1,0:0`.
 
 ### 6. print_device_names
 
