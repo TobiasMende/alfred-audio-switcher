@@ -51,14 +51,14 @@ func getAudioDeviceNameById(deviceID: AudioDeviceID) -> String {
     return deviceName
 }
 
-func getAudioDeviceIdByName(deviceName: String, type: DeviceType) -> AudioDeviceID? {
+func getAudioDeviceId(byKey key: String, type: DeviceType) -> AudioDeviceID? {
     let devices = getAudioDeviceList(type: type)
 
-    let foundDevice = devices.first { device in
-           device.name == deviceName
+    if let byUID = devices.first(where: { $0.uid == key }) {
+        return byUID.id
     }
 
-    return foundDevice?.id
+    return devices.first(where: { $0.name == key })?.id
 }
 
 func setDefaultAudioDevice(type: DeviceType, deviceID: AudioDeviceID) -> String? {
@@ -281,7 +281,7 @@ func switchDeviceByDeviceIndexAndList(type: DeviceType, deviceIndexAsString: Str
     }
 
     let deviceName = String(deviceFromList).trimmingCharacters(in: .whitespaces)
-    guard let deviceID = getAudioDeviceIdByName(deviceName: deviceName, type: type) else {
+    guard let deviceID = getAudioDeviceId(byKey: deviceName, type: type) else {
         fatalError("Device not found: '\(deviceName)' at Index: \(deviceIndex), deviceList: \(deviceList)")
     }
 
@@ -311,7 +311,7 @@ func rotateFavorites(type: DeviceType) {
     for _ in 0..<deviceList.count {
         let nextDeviceName = deviceList[nextDeviceIndex]
         
-        if let nextDeviceID = getAudioDeviceIdByName(deviceName: nextDeviceName, type: type),
+        if let nextDeviceID = getAudioDeviceId(byKey: nextDeviceName, type: type),
            let selectedDevice = setDefaultAudioDevice(type: type, deviceID: nextDeviceID) {
             print(selectedDevice)
             return
