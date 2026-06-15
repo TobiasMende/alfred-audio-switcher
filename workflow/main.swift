@@ -318,7 +318,9 @@ func rotateFavorites(type: DeviceType) {
         fatalError("No devices in list")
     }
 
-    let defaultDeviceIndex = deviceList.firstIndex(of: defaultDevice.name) ?? -1
+    let defaultDeviceIndex = deviceList.firstIndex {
+        $0 == defaultDevice.uid || $0 == defaultDevice.name
+    } ?? -1
     var nextDeviceIndex = (defaultDeviceIndex + 1) % deviceList.count
 
     for _ in 0..<deviceList.count {
