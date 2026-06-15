@@ -236,10 +236,23 @@ func printDeviceItems(type: DeviceType) {
     let ignoreList = convertMultilineArgumentToList(argument: getEnvironmentVariable(named: "ignorelist"))
     let favoriteList = convertFavoritesList(favoritesAsMultilineString: favoritesAsMultilineString)
     let defaultDevice = getDefaultAudioDevice(type: type)
-    let devices = getAudioDeviceList(type: type)
-    let devicesAsJson = filterAudioDevices(devices: devices, ignoreList: ignoreList).map { device in
+    let devices = filterAudioDevices(devices: getAudioDeviceList(type: type), ignoreList: ignoreList)
+
+    var nameCounts: [String: Int] = [:]
+    for device in devices {
+        nameCounts[device.name, default: 0] += 1
+    }
+
+    let devicesAsJson = devices.map { device in
         let isDefault = (defaultDevice.id == device.id)
-        let friendlyName = favoriteList[device.uid] ?? favoriteList[device.name] ?? device.name
+        let explicitFriendly = favoriteList[device.uid] ?? favoriteList[device.name]
+        var friendlyName = explicitFriendly ?? device.name
+
+        let nameCollides = (nameCounts[device.name] ?? 0) > 1
+        if explicitFriendly == nil, nameCollides, !device.uid.isEmpty {
+            friendlyName = "\(device.name) (\(device.uid))"
+        }
+
         return deviceToJson(device: device, friendlyName: friendlyName, isDefault: isDefault, type: type)
     }.joined(separator: ",")
 
