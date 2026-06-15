@@ -109,7 +109,23 @@ func getDeviceName(deviceID: AudioDeviceID) -> String? {
     }
 }
 
-func getDefaultAudioDevice(type: DeviceType) -> (name: String, id: AudioDeviceID) {
+func getDeviceUID(deviceID: AudioDeviceID) -> String? {
+    var nameSize = UInt32(MemoryLayout<CFString>.size)
+    var deviceUID: CFString = "" as CFString
+    var address = createPropertyAddress(selector: kAudioDevicePropertyDeviceUID)
+
+    let status = withUnsafeMutablePointer(to: &deviceUID) { ptr in
+        AudioObjectGetPropertyData(deviceID, &address, 0, nil, &nameSize, ptr)
+    }
+
+    if status == noErr, let uid = deviceUID as String? {
+        return uid
+    } else {
+        return nil
+    }
+}
+
+func getDefaultAudioDevice(type: DeviceType) -> (name: String, uid: String, id: AudioDeviceID) {
     var deviceID = AudioDeviceID()
     var propertySize = UInt32(MemoryLayout<AudioDeviceID>.size)
     var propertyAddress = getPropertyAddress(type: type)
@@ -121,10 +137,11 @@ func getDefaultAudioDevice(type: DeviceType) -> (name: String, id: AudioDeviceID
     guard let deviceName = getDeviceName(deviceID: deviceID) else {
         fatalError("Failed to retrieve device Name for \(deviceID)")
     }
-    return (name: deviceName, id: deviceID)
+    let deviceUID = getDeviceUID(deviceID: deviceID) ?? ""
+    return (name: deviceName, uid: deviceUID, id: deviceID)
 }
 
-func getAudioDeviceList(type: DeviceType) -> [(name: String, id: AudioDeviceID)] {
+func getAudioDeviceList(type: DeviceType) -> [(name: String, uid: String, id: AudioDeviceID)] {
     var propertySize: UInt32 = 0
     var address = createPropertyAddress(selector: kAudioHardwarePropertyDevices)
 
@@ -141,7 +158,7 @@ func getAudioDeviceList(type: DeviceType) -> [(name: String, id: AudioDeviceID)]
         fatalError("Error: Unable to get audio devices")
     }
 
-    var deviceList: [(name: String, id: AudioDeviceID)] = []
+    var deviceList: [(name: String, uid: String, id: AudioDeviceID)] = []
     for id in deviceIDs {
         let scope: AudioObjectPropertyScope = (type == .input) ? kAudioDevicePropertyScopeInput : kAudioDevicePropertyScopeOutput
         var streamAddress = AudioObjectPropertyAddress(
@@ -159,7 +176,8 @@ func getAudioDeviceList(type: DeviceType) -> [(name: String, id: AudioDeviceID)]
             continue
         }
 
-        deviceList.append((name: deviceName, id: id))
+        let deviceUID = getDeviceUID(deviceID: id) ?? ""
+        deviceList.append((name: deviceName, uid: deviceUID, id: id))
 
     }
 
@@ -175,12 +193,12 @@ func convertStringToDeviceID(deviceIDString: String) -> AudioDeviceID? {
 }
 
 
-func deviceToJson(device: (name: String, id: AudioDeviceID), friendlyName: String, isDefault: Bool, type: DeviceType) -> String {
+func deviceToJson(device: (name: String, uid: String, id: AudioDeviceID), friendlyName: String, isDefault: Bool, type: DeviceType) -> String {
     let iconName = isDefault ? "\(type)_selected.png" : "\(type).png"
     return "{\"title\": \"\(friendlyName)\", \"uid\": \"\(device.name)\", \"autocomplete\": \"\(friendlyName)\", \"arg\": \"\(device.id)\", \"icon\": {\"path\": \"./icons/\(iconName)\"}}"
 }
 
-func filterAudioDevices(devices: [(name: String, id: AudioDeviceID)], ignoreList: [String]) -> [(name: String, id: AudioDeviceID)] {
+func filterAudioDevices(devices: [(name: String, uid: String, id: AudioDeviceID)], ignoreList: [String]) -> [(name: String, uid: String, id: AudioDeviceID)] {
     return devices.filter { !ignoreList.contains($0.name) }
 }
 
