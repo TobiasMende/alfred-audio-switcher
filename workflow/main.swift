@@ -204,7 +204,8 @@ func filterAudioDevices(devices: [(name: String, uid: String, id: AudioDeviceID)
 
 func printDeviceNames(type: DeviceType) {
     getAudioDeviceList(type: type).forEach { device in
-            print("\(device.name)\t\(device.uid)")
+            let key = device.uid.isEmpty ? device.name : device.uid
+            print("\(key);\(device.name)")
     }
 }
 

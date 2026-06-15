@@ -17,7 +17,7 @@ Alfred workflow for macOS audio input/output device switching via Core Audio API
 ./workflow/run.sh print_device_names output
 ```
 
-`print_device_names` prints one `name<TAB>UID` line per device — use it to copy a device's UID for the env vars above.
+`print_device_names` prints one favorites-ready `UID;Name` line per device — paste straight into `outputs`/`inputs` (the `UID` key targets a specific device; the part after `;` is the editable label).
 
 ## Environment Variables
 
